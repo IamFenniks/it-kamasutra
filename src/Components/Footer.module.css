@@ -1,0 +1,13 @@
+.app__footer {
+    grid-area: footer;
+    grid-template-columns: auto auto;
+    display: grid;
+    align-content: center;
+  
+    background-color: #282c34;
+    padding: 10px;
+    color: #fff;
+  }
+    .footer___left{text-align: left;}
+    .footer___right{text-align: right;}
+  

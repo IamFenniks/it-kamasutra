@@ -1,0 +1,11 @@
+
+.app__sidebar {
+    grid-area: sidebar;
+    display: grid;
+
+    padding: 10px;
+    color: #fff;
+    background-color: #61dafb;
+    pointer-events: none;
+}
+  

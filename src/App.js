@@ -1,13 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
-import Header from './Header';
-import Tecknologies from './Tecknologies';
+import Header from './Components/Header';
+import Sidebar from './Components/Sidebar';
+import Profile from './Components/Profile';
+import Footer from './Components/Footer';
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="app_wrapper">
       <Header />
-      <Tecknologies />
+      <Sidebar />
+      <Profile />
+      <Footer />
     </div>
   );
 }
