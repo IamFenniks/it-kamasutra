@@ -1,4 +1,4 @@
-.app__header {
+.app_header {
     grid-area: header;
     display: grid;
     grid-template-columns: 2fr 10fr;
@@ -9,14 +9,14 @@
     align-items: center;
     color: white;
   }
-    .header___img{
+    .headerImg{
       height: 100%;
       width: auto;
     }
-      .header___title p{
+      .header_title p{
         font-size: 21px; margin: 0;
       }
-        .header___title P span{
+        .header_title P span{
           font-size: 16px;
         }
   

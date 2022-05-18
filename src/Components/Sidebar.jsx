@@ -1,16 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import style from './Sidebar.module.css';
 
 const Sidebar = () => {
     return (
-        <sidebar className={style.app__sidebar}>
+        <div className={style.app_sidebar}>
             <nav>
-                <div><a href='#s'>My posts</a></div>
-                <div><a href='#s'>Friends posts</a></div>
-                <div><a href='#s'>Messages</a></div>
-                <div><a href='#s'>Callbacks</a></div>
+                <div><Link to='profile' activ>Профиль</Link></div>
+                <div><Link to='dialogs' activ>Диалоги</Link></div>
+                <div><Link to='music' activ>Музыка</Link></div>
+                <div><Link to='news' activ>Новости</Link></div>
             </nav>
-        </sidebar>
+        </div>
     );
 }
 

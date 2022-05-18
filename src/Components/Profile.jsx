@@ -1,44 +1,44 @@
 import React from "react";
 import style from './Profile.module.css';
-import mainimage from './../images/histuqua.jpg';
+import mainimage from './../images/profile_headerImg.jpg';
 import profilePNG from './../images/profile.png';
 
 const Profile = () => {
     return (
-        <main className={style.app__main}>
-            <div className={style.main___header}>
+        <main className={style.app_main}>
+            <div className={style.main_header}>
                 <img src={mainimage} alt='main page' />
             </div>
 
-            <div className={style.main___content}>
-                <div className={style.content___profile}>
+            <div className={style.main_content}>
+                <div className={style.content_profile}>
                     <img src={ profilePNG } alt='profile image' />
                     <div className={style.profile}>
-                        <div className={style.profile__table}>
-                            <div className={style.table__row}>
-                                <div className={style.table__name}>Дата рождения:</div>
-                                <div className={style.table__value}>14.01.1972</div>
+                        <div className={style.profile_table}>
+                            <div className={style.table_row}>
+                                <div className={style.table_name}>Дата рождения:</div>
+                                <div className={style.table_value}>14.01.1972</div>
                             </div>
                            
-                            <div className={style.table__row}>
-                                <div className={style.table__name}>Город:</div>
-                                <div className={style.table__value}>Володарское</div>
+                            <div className={style.table_row}>
+                                <div className={style.table_name}>Город:</div>
+                                <div className={style.table_value}>Володарское</div>
                             </div>
                            
-                            <div className={style.table__row}>
-                                <div className={style.table__name}>Образование:</div>
-                                <div className={style.table__value}>Средне-специальное</div>
+                            <div className={style.table_row}>
+                                <div className={style.table_name}>Образование:</div>
+                                <div className={style.table_value}>Средне-специальное</div>
                             </div>
                            
-                            <div className={style.table__row}>
-                                <div className={style.table__name}>Web-сайт:</div>
-                                <div className={style.table__value}>https:olmark-onlinemarket.com</div>
+                            <div className={style.table_row}>
+                                <div className={style.table_name}>Web-сайт:</div>
+                                <div className={style.table_value}>https:olmark-onlinemarket.com</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className={style.content___articles}>
+                <div className={style.content_articles}>
                     <h3>Мои статьи</h3>
                     <div className={style.article}>
                         <div className={style.ava}>1</div>

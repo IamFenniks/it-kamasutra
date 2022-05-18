@@ -1,0 +1,9 @@
+.dialogs{
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+.friend a{color: black; text-decoration: none;}
+
+.messages{padding:10px; border-left: 1px solid green;}
+.friend, .item{margin-bottom: 10px;}
+.item{text-indent: 21px;}

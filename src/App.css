@@ -9,6 +9,10 @@
   min-height: 100vh;
 }
 
+.app_pages{
+  padding: 21px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .app__logo {
     animation: app__logo-spin infinite 20s linear;

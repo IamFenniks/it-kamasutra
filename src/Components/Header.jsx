@@ -4,10 +4,10 @@ import logo from './../images/cart.png';
 
 const Header = () => {
     return (
-        <header className={ style.app__header }>
-            <img src={ logo } alt={ logo } className={ style.header___img } />
+        <header className={ style.app_header }>
+            <img src={ logo } alt={ logo } className={ style.headerImg } />
 
-            <div className={ style.header___title }>
+            <div className={ style.header_title }>
                 <p>It-Camasutra &nbsp;
                     <span>Социальная сеть</span>
                 </p>
