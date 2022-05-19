@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "./Components/Header";
 import Sidebar from "./Components/Sidebar";
-import Profile from "./Components/Profile";
+import Profile from "./Components/Profile/Profile";
 import Footer from "./Components/Footer";
 import Dialogs from "./Components/Dialogs/Dialogs";
 import Musik from "./Components/Musik/Musik";

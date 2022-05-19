@@ -1,7 +1,13 @@
 .dialogs{
     display: grid;
+    grid-template-rows: auto auto;
     grid-template-columns: 2fr 10fr;
+    grid-template-areas: 'h3 h3' 'friends messages';
 }
+h3{grid-area: h3;}
+.my_friends{grid-area: friends;}
+.messages{grid-area: messages;}
+
 .friend a{color: black; text-decoration: none;}
 
 .messages{padding:10px; border-left: 1px solid green;}

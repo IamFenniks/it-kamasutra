@@ -3,9 +3,9 @@ import style from './News.module.css';
 
 const News = () => {
     return (
-        <div className={style.news}>
+        <main className={style.news}>
             <h3>News</h3>
-        </div>
+        </main>
     );
 }
 

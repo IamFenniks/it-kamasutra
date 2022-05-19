@@ -1,0 +1,18 @@
+.my_posts .post {
+  clear: both;
+  padding: 10px;
+  background: beige;
+  margin-bottom: 10px;
+}
+
+.post .ava {
+  width: 40px;
+  height: 40px;
+  background-color: brown;
+  border-radius: 10em;
+  float: left;
+  margin-right: 10px;
+  text-align: center;
+  color: white;
+  font-size: 28px;
+}

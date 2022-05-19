@@ -9,6 +9,8 @@
   min-height: 100vh;
 }
 
+a:hover{color: blue !important; font-size: 17px !important; animation:2s ease !important;}
+
 .app_pages{
   padding: 21px;
 }

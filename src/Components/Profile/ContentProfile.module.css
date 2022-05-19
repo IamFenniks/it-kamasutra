@@ -1,0 +1,14 @@
+.content_profile {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}
+
+.table_row {
+  display: grid;
+  grid-template-columns: 3fr 9fr;
+  grid-gap: 5px;
+}
+
+.table_name {
+  font-weight: 600;
+}
