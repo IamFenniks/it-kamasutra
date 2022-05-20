@@ -8,7 +8,7 @@ import Musik from "./Components/Musik/Musik";
 import News from "./Components/News/News";
 import { Route, Routes } from "react-router-dom";
 
-const App = () => {
+const App = (props) => {
   return (
     <div className="app_wrapper">
       <Header />
@@ -16,8 +16,8 @@ const App = () => {
 
       <div className="app_pages">
         <Routes>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/dialogs" element={<Dialogs />} />
+          <Route path="/profile" element={<Profile postData={ props.postData } />} />
+          <Route path="/dialogs" element={<Dialogs friendsData={props.friendsData} messageData={props.messageData} />} />
           <Route path="/music" element={<Musik />} />
           <Route path="/news" element={<News />} />
         </Routes>

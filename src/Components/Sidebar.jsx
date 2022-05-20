@@ -6,10 +6,10 @@ const Sidebar = () => {
     return (
         <div className={style.app_sidebar}>
             <nav>
-                <div><Link to='profile' activ>Профиль</Link></div>
-                <div><Link to='dialogs' activ>Диалоги</Link></div>
-                <div><Link to='music' activ>Музыка</Link></div>
-                <div><Link to='news' activ>Новости</Link></div>
+                <div><Link to='profile'>Профиль</Link></div>
+                <div><Link to='dialogs'>Диалоги</Link></div>
+                <div><Link to='music'>Музыка</Link></div>
+                <div><Link to='news'>Новости</Link></div>
             </nav>
         </div>
     );
