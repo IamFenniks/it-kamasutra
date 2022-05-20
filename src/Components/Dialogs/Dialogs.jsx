@@ -6,8 +6,8 @@ import style from './Dialogs.module.css';
 const Dialogs = (props) => {
     
     // .Maping start
-        let elementFriend = props.friendsData.map(f => <DialogFriend name={ f.name } id={ f.id } />);
-        let elementMessage = props.messageData.map(m => <DialogItem message={ m.message } id={ m.id } />);
+        let elementFriend  = props.state.friendsData.map(f => <DialogFriend name={ f.name }       id={ f.id } />);
+        let elementMessage = props.state.messageData.map(m => <DialogItem   message={ m.message } id={ m.id } />);
     // .Maping finish
 
     return (

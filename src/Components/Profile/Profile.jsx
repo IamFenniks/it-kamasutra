@@ -5,6 +5,7 @@ import ContentProfile from "./ContentProfile/ContentProfile";
 import MyPosts from "./MyPosts/MyPosts";
 
 const Profile = (props) => {
+    debugger;
     return (
         <main className={style.app_main}>
             <div className={style.main_header}>
@@ -13,7 +14,7 @@ const Profile = (props) => {
 
             <div className={style.main_content}>
                 <ContentProfile />
-                <MyPosts postData={ props.postData } />
+                <MyPosts postData={ props.state.postData } />
             </div>
         </main>
     );
