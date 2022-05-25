@@ -1,3 +1,5 @@
+import { renderEntireTree } from "../render";
+
 let state = {
     dialogsPage: {
         friendsData: [
@@ -31,13 +33,14 @@ let state = {
 }
 
 export let addPost = (postMessage) => {
-    // debugger;
     let newPost = {
         id: 3,
         text: postMessage
     };
 
     state.profilePage.postData.push(newPost);
+
+    renderEntireTree( state );
 }
 
 export default state;

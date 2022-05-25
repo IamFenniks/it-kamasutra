@@ -9,6 +9,7 @@ import News from "./Components/News/News";
 import { Route, Routes } from "react-router-dom";
 
 const App = (props) => {
+  // debugger;
   return (
     <div className="app_wrapper">
       <Header />
