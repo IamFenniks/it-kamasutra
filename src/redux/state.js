@@ -1,4 +1,6 @@
-import { renderEntireTree } from "../render";
+let renderEntireTree = (state) => {
+    console.log('State changed');
+}
 
 let state = {
     dialogsPage: {
@@ -27,8 +29,8 @@ let state = {
             { id: 0, text: 'Это статья номер 1' },
             { id: 1, text: 'Это статья номер 2' },
             { id: 2, text: 'Это статья номер 3' }
-        ]
-
+        ],
+        newPostText: [ 'It-kamasutra' ]
     }
 }
 
@@ -41,6 +43,16 @@ export let addPost = (postMessage) => {
     state.profilePage.postData.push(newPost);
 
     renderEntireTree( state );
+}
+
+export let updateNewPostText = (newText) => {
+    debugger;
+    state.profilePage.newPostText = newText;
+    renderEntireTree( state );
+}
+
+export const subscribe = (observer) => {
+    renderEntireTree = observer;
 }
 
 export default state;
