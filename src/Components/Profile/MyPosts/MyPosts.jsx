@@ -16,7 +16,6 @@ const MyPosts = (props) => {
         let postText = newPostElement.current.value;
         props.dispatch( updateNewPostTextAC(postText) );
     }
-
     return (
         <div className={style.my_posts}>
             <h3>Мои статьи</h3>
@@ -27,10 +26,10 @@ const MyPosts = (props) => {
                         ref={ newPostElement }
                         onChange={ onPostsChange }
                         value={ props.newPostText } 
-                        placeholder="Текст..." />
+                        placeholder="Написать статью..." />
                 </div>
                 <div>
-                    <button type='submit' onClick={ addPost }>OK</button>
+                    <button type='submit' onClick={ addPost }>Отправить</button>
                 </div>
             </div>
             { postElement }

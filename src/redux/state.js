@@ -1,7 +1,11 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
 let store = {
+    
     _state: {
         dialogsPage: {
             friendsData: [
@@ -21,7 +25,8 @@ let store = {
                 { id: '4', message: 'Привет!' },
                 { id: '5', message: 'Привет!' },
                 { id: '6', message: 'Привет!' }
-            ]
+            ],
+            newMessageText: ''
         },
 
         profilePage: {
@@ -30,7 +35,7 @@ let store = {
                 { id: 1, text: 'Это статья номер 2' },
                 { id: 2, text: 'Это статья номер 3' }
             ],
-            newPostText: [ 'It-kamasutra' ]
+            newPostText: ''
         }
     },
     _callSubscriber() {
@@ -55,9 +60,27 @@ let store = {
             this._state.profilePage.newPostText = "";
         
             this._callSubscriber( this._state );
-        } 
+        }
+
         else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber( this._state );
+        }
+
+        else if(action.type === ADD_MESSAGE){
+            let newMessage = {
+                id: 7,
+                message: this._state.dialogsPage.newMessageText
+            };
+        
+            this._state.dialogsPage.messageData.push(newMessage);
+            this._state.dialogsPage.newMessageText = "";
+        
+            this._callSubscriber( this._state );
+        } 
+        
+        else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+            this._state.dialogsPage.newMessageText = action.newText;
             this._callSubscriber( this._state );
         }
     }
@@ -67,9 +90,15 @@ let store = {
 export const addPostAC = () => { 
     return { type: ADD_POST }
 }
+export const addMessageAC = () => { 
+    return { type: ADD_MESSAGE }
+}
 
 export const updateNewPostTextAC = (postText) => {
     return { type: UPDATE_NEW_POST_TEXT, newText: postText }
+}
+export const updateNewMessageTextAC = (messageText) => {
+    return { type: UPDATE_NEW_MESSAGE_TEXT, newText: messageText }
 }
 
 export default store;
