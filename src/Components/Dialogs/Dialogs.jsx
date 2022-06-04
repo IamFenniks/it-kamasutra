@@ -1,5 +1,5 @@
 import React from "react";
-import { addMessageAC, updateNewMessageTextAC } from "../../redux/state";
+import { addMessageAC, updateNewMessageTextAC } from "../../redux/dialogsReduser";
 import DialogFriend from "./DialogFriend/DialogsFriend";
 import DialogItem from "./DialogItem/DialogsItem";
 import style from './Dialogs.module.css';
@@ -17,6 +17,7 @@ const Dialogs = (props) => {
 
     // let newMessageElement = React.createRef(); Отказываемся от Ref
     let newMessageText = props.state.newMessageText;
+    
     let onMessageChange = (e) => {
         let messageText = e.target.value;  // Ноходим textarea по параметру и таргетингу
         props.dispatch( updateNewMessageTextAC(messageText) );

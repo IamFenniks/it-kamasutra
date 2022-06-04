@@ -1,8 +1,5 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+import dialogsReduser from "./dialogsReduser";
+import profileReduser from "./profileReduser";
 
 let store = {
     
@@ -50,55 +47,11 @@ let store = {
     },
 
     dispatch(action) {
-        if(action.type === ADD_POST){
-            let newPost = {
-                id: 3,
-                text: this._state.profilePage.newPostText
-            };
-        
-            this._state.profilePage.postData.push(newPost);
-            this._state.profilePage.newPostText = "";
-        
-            this._callSubscriber( this._state );
-        }
+        this._state.profilePage = profileReduser(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReduser(this._state.dialogsPage, action);
 
-        else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber( this._state );
-        }
-
-        else if(action.type === ADD_MESSAGE){
-            let newMessage = {
-                id: 7,
-                message: this._state.dialogsPage.newMessageText
-            };
-        
-            this._state.dialogsPage.messageData.push(newMessage);
-            this._state.dialogsPage.newMessageText = "";
-        
-            this._callSubscriber( this._state );
-        } 
-        
-        else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-            this._state.dialogsPage.newMessageText = action.newText;
-            this._callSubscriber( this._state );
-        }
+        this._callSubscriber( this._state );
     }
-}
-
-
-export const addPostAC = () => { 
-    return { type: ADD_POST }
-}
-export const addMessageAC = () => { 
-    return { type: ADD_MESSAGE }
-}
-
-export const updateNewPostTextAC = (postText) => {
-    return { type: UPDATE_NEW_POST_TEXT, newText: postText }
-}
-export const updateNewMessageTextAC = (messageText) => {
-    return { type: UPDATE_NEW_MESSAGE_TEXT, newText: messageText }
 }
 
 export default store;
