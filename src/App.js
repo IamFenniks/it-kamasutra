@@ -3,10 +3,10 @@ import Header from "./Components/Header";
 import Sidebar from "./Components/Sidebar";
 import Profile from "./Components/Profile/Profile";
 import Footer from "./Components/Footer";
-import Dialogs from "./Components/Dialogs/Dialogs";
 import Musik from "./Components/Musik/Musik";
 import News from "./Components/News/News";
 import { Route, Routes } from "react-router-dom";
+import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
 const App = (props) => {
   // debugger;
@@ -17,10 +17,8 @@ const App = (props) => {
 
       <div className="app_pages">
         <Routes>
-          <Route path="/profile" element={<Profile profilePage={ props.state.profilePage } 
-                                                   dispatch={ props.dispatch } />} />
-          <Route path="/dialogs" element={<Dialogs state={ props.state.dialogsPage } 
-                                                   dispatch={ props.dispatch } />} />
+          <Route path="/profile" element={<Profile store={ props.store } />} />
+          <Route path="/dialogs" element={<DialogsContainer store={ props.store } />} />
           <Route path="/music" element={<Musik />} />
           <Route path="/news" element={<News />} />
         </Routes>

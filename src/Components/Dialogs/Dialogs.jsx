@@ -5,22 +5,22 @@ import DialogItem from "./DialogItem/DialogsItem";
 import style from './Dialogs.module.css';
 
 const Dialogs = (props) => {
-    
+    debugger;
     // .Maping start
         let elementFriend  = props.state.friendsData.map(f => <DialogFriend name={ f.name }       id={ f.id } />);
         let elementMessage = props.state.messageData.map(m => <DialogItem   message={ m.message } id={ m.id }  />);
     // .Maping finish
 
-    let addMessage = () => {
-        props.dispatch( addMessageAC() );
+    let onAddMessage = () => {
+        props.addMessage();
     }
 
     // let newMessageElement = React.createRef(); Отказываемся от Ref
-    let newMessageText = props.state.newMessageText;
+    let newMessageText = props.newMessageText;
     
     let onMessageChange = (e) => {
         let messageText = e.target.value;  // Ноходим textarea по параметру и таргетингу
-        props.dispatch( updateNewMessageTextAC(messageText) );
+        props.updateNewMessageText(messageText);
     }
     return (
         <main className={style.dialogs}>
@@ -45,7 +45,7 @@ const Dialogs = (props) => {
                             placeholder='Введите сообщение...' />
                     </div>
                     
-                    <div> <button onClick={ addMessage }> Добавить </button> </div>
+                    <div> <button onClick={ onAddMessage }> Добавить </button> </div>
                 </div>
             </div>
         </main>

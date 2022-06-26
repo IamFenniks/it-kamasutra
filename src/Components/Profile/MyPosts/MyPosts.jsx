@@ -7,29 +7,28 @@ const MyPosts = (props) => {
     
     let postElement = props.posts.map( (p, index) => <Post key={index} postText={p.text} id={p.id} />);
     
-    let newPostElement = React.createRef();
-    let addPost = () => { 
-        props.dispatch( addPostAC() );
+    let onAddPost = () => { 
+        props.addPost();
     };
 
-    let onPostsChange = () => {
-        let postText = newPostElement.current.value;
-        props.dispatch( updateNewPostTextAC(postText) );
+    let onPostsChange = (e) => {
+        let postText = e.target.value;
+        props.updateNewPostText(postText);
     }
+    // debugger;
     return (
         <div className={style.my_posts}>
             <h3>Мои статьи</h3>
 
             <div className={style.btn_group}>
                 <div>
-                    <textarea 
-                        ref={ newPostElement }
+                    <textarea
                         onChange={ onPostsChange }
                         value={ props.newPostText } 
                         placeholder="Написать статью..." />
                 </div>
                 <div>
-                    <button type='submit' onClick={ addPost }>Отправить</button>
+                    <button type='submit' onClick={ onAddPost }>Отправить</button>
                 </div>
             </div>
             { postElement }

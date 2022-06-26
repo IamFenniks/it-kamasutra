@@ -2,9 +2,10 @@ import React from "react";
 import style from './Profile.module.css';
 import mainimage from './../../images/profile_headerImg.jpg';
 import ContentProfile from "./ContentProfile/ContentProfile";
-import MyPosts from "./MyPosts/MyPosts";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const Profile = (props) => {
+    // debugger;
     return (
         <main className={style.app_main}>
             <div className={style.main_header}>
@@ -13,10 +14,7 @@ const Profile = (props) => {
 
             <div className={style.main_content}>
                 <ContentProfile />
-                <MyPosts 
-                    posts={ props.profilePage.postData } 
-                    newPostText={ props.profilePage.newPostText }
-                    dispatch={ props.dispatch } />
+                <MyPostsContainer store={ props.store } />
             </div>
         </main>
     );
