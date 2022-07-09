@@ -10,6 +10,8 @@ const Sidebar = () => {
                 <div><Link to='dialogs'>Диалоги</Link></div>
                 <div><Link to='music'>Музыка</Link></div>
                 <div><Link to='news'>Новости</Link></div>
+                <br />
+                <div><Link to='users'>Пользователи</Link></div>
             </nav>
         </div>
     );
