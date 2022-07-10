@@ -7,12 +7,17 @@ img{width: 75px;}
     grid-gap: 10px;
 
     margin-bottom: 21px;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid green;
     border-radius: 5px;
     text-align: center;
     box-shadow: 7px 7px 10px;
     box-shadow: 7px 7px 12px rgb(0 0 0 / 10%);
+}
+.left_side{
+    padding: 5px;
+    border: 0.01rem solid lightgray;
+    border-radius: 4px;
 }
 .rigth_side{
     display: grid;
