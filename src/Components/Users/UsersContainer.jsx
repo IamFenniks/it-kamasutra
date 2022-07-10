@@ -5,8 +5,7 @@ import Users from "./Users";
 
 let mapStateToProps = (state) => {
     return {
-        state: state.dialogsPage,
-        newMessageText: state.dialogsPage.newMessageText
+        users: state.usersPage.users
     }
 }
   
