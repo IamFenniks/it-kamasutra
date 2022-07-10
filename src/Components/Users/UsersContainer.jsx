@@ -1,6 +1,6 @@
-// import React from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { addMessageAC, updateNewMessageTextAC } from "../../redux/dialogsReduser";
+import { followAC, unfollowAC } from "../../redux/usersReduser";
 import Users from "./Users";
 
 let mapStateToProps = (state) => {
@@ -11,13 +11,12 @@ let mapStateToProps = (state) => {
   
 let mapDispatchToProps = (dispatch) => {
     return {
-        updateNewMessageText: (messageText) => {
-            let action = updateNewMessageTextAC(messageText);
-            dispatch(action);
+        followed: (userId) => {
+            dispatch(followAC(userId))
         },
-        addMessage: () => {
-            let action = addMessageAC();
-            dispatch(action);
+
+        unfollowed: (userId) => {
+            dispatch(unfollowAC(userId))
         }
     }
 }

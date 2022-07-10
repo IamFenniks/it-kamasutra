@@ -42,6 +42,7 @@ export const usersReduser = (state = initialState, action) => {
                    if(u.id === action.id){
                        return {...u, followed: true}
                    }
+                   return u;
                })
             }
 
@@ -70,7 +71,7 @@ export const followAC = (userId) => {
     return { type: FOLLOW, id: userId };
 };
 
-export const unfollowtAC = (userId) => {
+export const unfollowAC = (userId) => {
     return { type: UNFOLLOW, id: userId };
 };
 

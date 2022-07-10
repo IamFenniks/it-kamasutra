@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./Users.module.css"
-
+// debugger;
 const Users = (props) => {
     return (
         <main className={style.users}>
@@ -10,7 +10,11 @@ const Users = (props) => {
                 props.users.map(u => <div key={u.id} className={style.user_element}>
                     <div className={style.left_side}>
                         <img src={u.userImg} alt="user avtar" />
-                        <button>Follow</button>
+                        { u.followed 
+                            ? <button onClick={ () => { props.unfollowed(u.id) } }>Follow</button> 
+                            : <button onClick={ () => { props.followed(u.id) } }>Unfollow</button>
+                        }
+                        
                     </div>
 
                     <div className={style.rigth_side}>
