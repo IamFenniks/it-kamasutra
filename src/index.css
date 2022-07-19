@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.preloader{
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+  margin: -21px;
+}
+.preloader img{
+  margin-left: 34vw;
+  margin-top: 24vh;
+}

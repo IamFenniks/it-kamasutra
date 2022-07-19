@@ -1,11 +1,11 @@
 import React from "react";
 import style from './Header.module.css'
-import logo from './../images/cart.png';
+import logo from './../images/logo.png';
 
 const Header = () => {
     return (
         <header className={ style.app_header }>
-            <img src={ logo } alt={ logo } className={ style.headerImg } />
+            <img src={ logo } alt='Логотип' className={ style.headerImg } />
 
             <div className={ style.header_title }>
                 <p>It-Camasutra &nbsp;

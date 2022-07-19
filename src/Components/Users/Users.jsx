@@ -35,8 +35,8 @@ const Users = (props) => {
                     <div className={style.left_side}>
                         <img src={u.photos.small != null ? u.photos.small : userPhoto } alt="user avtar" />
                         { u.followed 
-                            ? <button onClick={ () => { props.unfollowed(u.id) } }>Follow</button> 
-                            : <button onClick={ () => { props.followed(u.id) } }>Unfollow</button>
+                            ? <button onClick={ () => { props.unfollow(u.id) } }>Follow</button> 
+                            : <button onClick={ () => { props.follow(u.id) } }>Unfollow</button>
                         }
                         
                     </div>
