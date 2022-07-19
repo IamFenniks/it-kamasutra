@@ -68,27 +68,27 @@ export const usersReduser = (state = initialState, action) => {
     }
 };
 
-export const followAC = (userId) => {
+export const follow = (userId) => {
     return { type: FOLLOW, id: userId };
 };
 
-export const unfollowAC = (userId) => {
+export const unfollow = (userId) => {
     return { type: UNFOLLOW, id: userId };
 };
 
-export const setUsersAC = (users) => {
+export const setUsers = (users) => {
     return { type: SET_USERS, users: users };
 };
 
-export const setCurrentPageAC = (currentPage) => {
+export const setCurrentPage = (currentPage) => {
     return { type: SET_CURRENT_PAGE, currentPage };
 };
 
-export const setTotalCountAC = (totalCount) => {
+export const setTotalCount = (totalCount) => {
     return { type: SET_TOTAL_COUNT, totalCount };
 };
 
-export const toggleFetchingAC = (fetched) => {
+export const toggleFetching = (fetched) => {
     return { type: TOGGLE_FETCHING, fetched };
 };
 
