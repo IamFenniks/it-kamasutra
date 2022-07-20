@@ -1,0 +1,15 @@
+
+.preloader{
+    width: 83.3%;
+    position: absolute;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+    background-image: url('./../../images/preloader.gif');
+    margin: -21px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  /* .preloader img{
+    margin-left: 34vw;
+    margin-top: 24vh;
+  } */

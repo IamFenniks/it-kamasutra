@@ -1,5 +1,6 @@
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_USER_PROFILE = 'ADD-USER-PROFILE';
 
 let initialState = {
     postData: [
@@ -7,7 +8,8 @@ let initialState = {
         { id: 1, text: 'Это статья номер 2' },
         { id: 2, text: 'Это статья номер 3' }
     ],
-    newPostText: ''
+    newPostText: '',
+    userProfile: null
 };
 
 export const profileReduser = (state = initialState, action) => {
@@ -27,17 +29,27 @@ export const profileReduser = (state = initialState, action) => {
         case UPDATE_NEW_POST_TEXT:
             stateCopy.newPostText = action.newText;
             return stateCopy;
+
+        case ADD_USER_PROFILE: 
+            return {
+                ...state,
+                userProfile: action.profile
+            }
             
         default: return state;
     }
 };
 
-export const addPostAC = () => {
+export const addPost = () => {
     return { type: ADD_POST };
 };
 
-export const updateNewPostTextAC = (postText) => {
+export const updateNewPostText = (postText) => {
     return { type: UPDATE_NEW_POST_TEXT, newText: postText };
 };
+
+export const addUserProfile = (profile) => {
+    return { type: ADD_USER_PROFILE, profile};
+}
 
 export default profileReduser;

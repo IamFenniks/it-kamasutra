@@ -1,15 +1,10 @@
-import React from "react";
-import axios from "axios";
-import { connect } from "react-redux";
-import { follow, 
-    setCurrentPage, 
-    toggleFetching, 
-    setTotalCount, 
-    setUsers, 
-    unfollow 
-} from "../../redux/usersReduser";
-import Users from "./Users";
-import Preloader from "../Common/Preloader";
+import React from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { follow, setCurrentPage, setTotalCount, setUsers, unfollow } from '../../redux/usersReduser';
+import { toggleFetching } from '../../redux/commonReduser';
+import Users from './Users';
+import Preloader from '../Common/Preloader';
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -29,6 +24,7 @@ class UsersContainer extends React.Component {
     }
     
     render() { 
+        // debugger
             return <>
                     { this.props.isFetching ? <Preloader /> : null }
                     
@@ -50,7 +46,7 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalCount: state.usersPage.totalCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.common.isFetching
     }
 }
 

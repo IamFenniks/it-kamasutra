@@ -1,9 +1,10 @@
-import React from "react";
+import React from "react"
 import preloader from './../../images/preloader.gif'
+import style from './Preloader.module.css'
 
 const Preloader = () => {
     return (
-        <div className='preloader' ><img src={ preloader } alt='Ожидайте' /></div>
+        <div className={ style.preloader } ></div>
     )
 }
 
