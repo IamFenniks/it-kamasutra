@@ -1,28 +1,16 @@
 import axios from 'axios';
 import React from 'react';
-import {useParams} from 'react-router-dom'
 import { connect } from 'react-redux';
 import Profile from './Profile';
 import { addUserProfile } from '../../redux/profileReduser';
 import { toggleFetching } from '../../redux/commonReduser'
 import Preloader from '../Common/Preloader';
 
-export function withRouter(Children){
-    
-    return(props)=>{
-
-       let match  = {params: useParams()};
-       return <Children {...props}  match = {match}/>
-   }
- }
-
-class ProfileContainer extends React.Component {
+class MyProfileContainer extends React.Component {
     componentDidMount() {
         // debugger
         this.props.toggleFetching(true);
-        let userId = this.props.match.params.userId;
-        if(!userId) userId = 2;
-        axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + userId)
+        axios.get('https://social-network.samuraijs.com/api/1.0/profile/2')
             .then(response => {
                 // debugger
                 this.props.toggleFetching(false);
@@ -44,7 +32,4 @@ let mapStateToProps = (state) => {
         isFetching: state.common.isFetching
     }
 }
-
-let UrlContainer = withRouter(ProfileContainer)
-
-export default connect(mapStateToProps, { addUserProfile, toggleFetching }) (UrlContainer);
+export default connect(mapStateToProps, { addUserProfile, toggleFetching }) (MyProfileContainer);
