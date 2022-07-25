@@ -1,5 +1,4 @@
 import "./App.css";
-import Header from "./Components/Header";
 import Sidebar from "./Components/Sidebar";
 import Footer from "./Components/Footer";
 import Musik from "./Components/Musik/Musik";
@@ -9,12 +8,13 @@ import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
 import MyProfileContainer from "./Components/Profile/MyProfileContainer";
+import HeaderContainer from "./Components/Header/HeaderContainer";
 
 const App = (props) => {
   // debugger;
   return (
     <div className="app_wrapper">
-      <Header />
+      <HeaderContainer />
       <Sidebar />
 
       <div className="app_pages">

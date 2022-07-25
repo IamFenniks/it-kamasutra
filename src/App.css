@@ -9,7 +9,8 @@
   min-height: 100vh;
 }
 
-a:hover{color: blue !important; font-size: 17px !important; animation:2s ease !important;}
+a:hover{color: aquamarine !important; font-size: 16px !important; animation:2s ease !important;}
+a:active{font-size: 15px !important;}
 
 .app_pages{
   padding: 21px;

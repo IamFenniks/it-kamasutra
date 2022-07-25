@@ -1,0 +1,25 @@
+.app_header {
+  grid-area: header;
+  display: grid;
+  grid-template-columns: 2fr 8fr 2fr;
+  grid-template-rows: auto;
+
+  padding: 10px;
+  background-color: #282c34;
+  text-align: center;
+  align-items: center;
+  color: white;
+}
+.headerImg{
+  height: 40px;
+  width: auto;
+}
+.header_title p{
+  font-size: 21px; margin: 0;
+}
+.header_title P span{
+  font-size: 16px;
+}
+.login{text-align: right;}
+.login a{ color: white; text-decoration: none; }
+  
