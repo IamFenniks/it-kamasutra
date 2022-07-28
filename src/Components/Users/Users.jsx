@@ -2,7 +2,6 @@ import React from "react";
 import style from "./Users.module.css"
 import userPhoto from "./../../images/users.png"
 import { NavLink } from "react-router-dom";
-import axios from "axios";
 
 
 const Users = (props) => {
@@ -40,34 +39,10 @@ const Users = (props) => {
                             <img src={u.photos.small != null ? u.photos.small : userPhoto } alt="user avtar" />
                         </NavLink>
                         { u.followed 
-                            ? <button onClick={ () => { 
-                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                    withCredentials: true,
-                                    headers: {
-                                        'API-KEY': '4c541e25-0538-45bc-b14f-040beb1df540'
-                                    }
-                                })
-                                    .then(response => {
-                                        if(response.data.resultCode == 0) {
-                                            props.unfollow(u.id)
-                                        }
-                                    }); 
-                            } }>Unfollow</button>
+                            ? <button onClick={ (e) => { props.onUnfollow(u.id) } }>Unfollow</button>
 
-                            : <button onClick={ () => { 
-                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                    withCredentials: true,
-                                    headers: {
-                                        'API-KEY': '4c541e25-0538-45bc-b14f-040beb1df540'
-                                    }
-                                })
-                                    .then(response => {
-                                        if(response.data.resultCode == 0) {
-                                            props.follow(u.id)
-                                        }
-                                    });  } }>Follow</button> 
+                            : <button onClick={ (e) => { props.onFollow(u.id)  } }>Follow</button> 
                         }
-                        
                     </div>
 
                     <div className={style.rigth_side}>
