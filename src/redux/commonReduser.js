@@ -1,7 +1,9 @@
 const TOGGLE_FETCHING = 'TOGGLE-FETCHING';
+const TOGGLE_DISABLE = 'TOGGLE-DISABLE';
 
 let initialState = {
-    isFetching: false
+    isFetching: false,
+    followBtnDisabled: []
 };
 
 export const commonReduser = (state = initialState, action) => {
@@ -11,6 +13,14 @@ export const commonReduser = (state = initialState, action) => {
                 ...state,
                 isFetching: action.fetched
             }
+        
+            case TOGGLE_DISABLE:
+            return {
+                ...state,
+                followBtnDisabled: action.fetched
+                ? [ ...state.followBtnDisabled, action.userId ]
+                : state.followBtnDisabled.filter(id => id != action.userId)
+            }
             
         default: return state;
     }
@@ -18,6 +28,10 @@ export const commonReduser = (state = initialState, action) => {
 
 export const toggleFetching = (fetched) => {
     return { type: TOGGLE_FETCHING, fetched };
+};
+
+export const toggleDisable = (fetched, userId) => {
+    return { type: TOGGLE_DISABLE, fetched, userId };
 };
 
 export default commonReduser;

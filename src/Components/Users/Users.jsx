@@ -38,10 +38,17 @@ const Users = (props) => {
                         <NavLink to={'/profile/' + u.id}>
                             <img src={u.photos.small != null ? u.photos.small : userPhoto } alt="user avtar" />
                         </NavLink>
+                        
                         { u.followed 
-                            ? <button onClick={ (e) => { props.onUnfollow(u.id) } }>Unfollow</button>
+                            ? <button onClick={ (e) => { props.onUnfollow(u.id) }}
+                                      disabled={ props.followBtnDisabled.some(id => id === u.id) }>
+                                Unfollow
+                            </button>
 
-                            : <button onClick={ (e) => { props.onFollow(u.id)  } }>Follow</button> 
+                            : <button onClick={ (e) => { props.onFollow(u.id) }}
+                                      disabled={ props.followBtnDisabled.some(id => id === u.id) }>
+                                Follow
+                            </button> 
                         }
                     </div>
 

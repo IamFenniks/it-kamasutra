@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { follow, setCurrentPage, setTotalCount, setUsers, unfollow } from '../../redux/usersReduser';
-import { toggleFetching } from '../../redux/commonReduser';
+import { toggleFetching, toggleDisable } from '../../redux/commonReduser';
 import Users from './Users';
 import Preloader from '../Common/Preloader';
 import { fllowedAPI, userAPI } from '../../api/api';
@@ -26,26 +26,26 @@ class UsersContainer extends React.Component {
                             this.props.setUsers(data.items); });
     }
     onUnfollow = (userId) => {
-        this.props.toggleFetching(true);
+        this.props.toggleDisable(true, userId);
         fllowedAPI.unfollow(userId)
             .then(data => { 
-                this.props.toggleFetching(false); 
                 // debugger
                 if(data.resultCode == 0) {
                     this.props.unfollow(userId)
                 }
-            }); 
+                this.props.toggleDisable(false, userId); 
+        });
     }
     onFollow = (userId) => {
-        this.props.toggleFetching(true);
+        this.props.toggleDisable(true, userId);
         fllowedAPI.follow(userId)
             .then(data => { 
-                this.props.toggleFetching(false); 
                 // debugger
                 if(data.resultCode == 0) {
                     this.props.follow(userId)
                 }
-            }); 
+                this.props.toggleDisable(false, userId);
+            });  
     }
     
     render() { 
@@ -57,10 +57,10 @@ class UsersContainer extends React.Component {
                         totalCount={ this.props.totalCount }
                         pageSize={ this.props.pageSize }
                         currentPage={ this.props.currentPage }
+                        followBtnDisabled={this.props.followBtnDisabled}
                         onFollow={ this.onFollow }
                         onUnfollow={ this.onUnfollow }
                         onChangePage={ this.onChangePage }
-                        isFetching={this.props.isFetching}
                     /> 
                 </>
     }
@@ -72,10 +72,11 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalCount: state.usersPage.totalCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.common.isFetching
+        isFetching: state.common.isFetching,
+        followBtnDisabled: state.common.followBtnDisabled
     }
 }
 
 export default connect(mapStateToProps, 
-    { follow, unfollow, setUsers, setCurrentPage, setTotalCount, toggleFetching })
+    { follow, unfollow, setUsers, setCurrentPage, setTotalCount, toggleFetching, toggleDisable })
     (UsersContainer);
