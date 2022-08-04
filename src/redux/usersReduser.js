@@ -1,3 +1,6 @@
+import { userAPI } from "../api/api";
+import { toggleFetching } from "./commonReduser";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
@@ -5,7 +8,6 @@ const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT';
 
 let initialState = {
-    
     users: [],
     totalCount: 0,
     pageSize: 24,
@@ -13,8 +15,6 @@ let initialState = {
 };
 
 export const usersReduser = (state = initialState, action) => {
-    
-    
     switch (action.type) {
         case FOLLOW:
             return {
@@ -79,5 +79,20 @@ export const setCurrentPage = (currentPage) => {
 export const setTotalCount = (totalCount) => {
     return { type: SET_TOTAL_COUNT, totalCount };
 };
+
+// ThunkCtreator Start
+export const getUsersThC = (pageSize, currentPage) => {
+    return (dispatch) => {
+        dispatch(setCurrentPage(currentPage));
+        toggleFetching(true);
+
+        userAPI.getUsers(pageSize, currentPage)
+            .then(data => { toggleFetching(false); 
+                            dispatch(setUsers(data.items));
+                            dispatch(setTotalCount(data.totalCount)); 
+                        });  
+    }
+}
+// ThunkCtreator End
 
 export default usersReduser;

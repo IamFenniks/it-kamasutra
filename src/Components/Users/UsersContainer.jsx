@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { follow, setCurrentPage, setTotalCount, setUsers, unfollow } from '../../redux/usersReduser';
+import { follow, getUsersThC, setCurrentPage, setTotalCount, setUsers, unfollow } from '../../redux/usersReduser';
 import { toggleFetching, toggleDisable } from '../../redux/commonReduser';
 import Users from './Users';
 import Preloader from '../Common/Preloader';
@@ -8,22 +8,24 @@ import { fllowedAPI, userAPI } from '../../api/api';
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.toggleFetching(true);
+        this.props.getUsersThC(this.props.pageSize, this.props.currentPage);
+        // this.props.toggleFetching(true);
 
-        userAPI.getUsers(this.props.pageSize, this.props.currentPage)
-            .then(data => { this.props.toggleFetching(false); 
-                            this.props.setUsers(data.items);
-                            this.props.setTotalCount(data.totalCount); 
-                        });    
+        // userAPI.getUsers(this.props.pageSize, this.props.currentPage)
+        //     .then(data => { this.props.toggleFetching(false); 
+        //                     this.props.setUsers(data.items);
+        //                     this.props.setTotalCount(data.totalCount); 
+        //                 });    
     }
 
     onChangePage = (curPage) => {
-        this.props.setCurrentPage(curPage)
-        this.props.toggleFetching(true);
+        this.props.getUsersThC(this.props.pageSize, curPage);
+        // this.props.setCurrentPage(curPage)
+        // this.props.toggleFetching(true);
         
-        userAPI.getUsers(this.props.pageSize, curPage)
-            .then(data => { this.props.toggleFetching(false); 
-                            this.props.setUsers(data.items); });
+        // userAPI.getUsers(this.props.pageSize, curPage)
+        //     .then(data => { this.props.toggleFetching(false); 
+        //                     this.props.setUsers(data.items); });
     }
     onUnfollow = (userId) => {
         this.props.toggleDisable(true, userId);
@@ -78,5 +80,5 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, 
-    { follow, unfollow, setUsers, setCurrentPage, setTotalCount, toggleFetching, toggleDisable })
+    { follow, unfollow, setUsers, setCurrentPage, setTotalCount, toggleFetching, toggleDisable, getUsersThC })
     (UsersContainer);
