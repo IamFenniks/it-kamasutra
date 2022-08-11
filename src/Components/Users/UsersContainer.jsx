@@ -1,53 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { follow, getUsersThC, setCurrentPage, setTotalCount, setUsers, unfollow } from '../../redux/usersReduser';
-import { toggleFetching, toggleDisable } from '../../redux/commonReduser';
+import { getUsersThC, unfollowThC, followThC } from '../../redux/usersReduser';
 import Users from './Users';
 import Preloader from '../Common/Preloader';
-import { fllowedAPI, userAPI } from '../../api/api';
 
 class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.getUsersThC(this.props.pageSize, this.props.currentPage);
-        // this.props.toggleFetching(true);
-
-        // userAPI.getUsers(this.props.pageSize, this.props.currentPage)
-        //     .then(data => { this.props.toggleFetching(false); 
-        //                     this.props.setUsers(data.items);
-        //                     this.props.setTotalCount(data.totalCount); 
-        //                 });    
     }
 
     onChangePage = (curPage) => {
         this.props.getUsersThC(this.props.pageSize, curPage);
-        // this.props.setCurrentPage(curPage)
-        // this.props.toggleFetching(true);
-        
-        // userAPI.getUsers(this.props.pageSize, curPage)
-        //     .then(data => { this.props.toggleFetching(false); 
-        //                     this.props.setUsers(data.items); });
     }
     onUnfollow = (userId) => {
-        this.props.toggleDisable(true, userId);
-        fllowedAPI.unfollow(userId)
-            .then(data => { 
-                // debugger
-                if(data.resultCode == 0) {
-                    this.props.unfollow(userId)
-                }
-                this.props.toggleDisable(false, userId); 
-        });
+        this.props.unfollowThC(userId)
     }
     onFollow = (userId) => {
-        this.props.toggleDisable(true, userId);
-        fllowedAPI.follow(userId)
-            .then(data => { 
-                // debugger
-                if(data.resultCode == 0) {
-                    this.props.follow(userId)
-                }
-                this.props.toggleDisable(false, userId);
-            });  
+        this.props.followThC(userId)  
     }
     
     render() { 
@@ -80,5 +49,5 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, 
-    { follow, unfollow, setUsers, setCurrentPage, setTotalCount, toggleFetching, toggleDisable, getUsersThC })
+    { followThC, unfollowThC, getUsersThC })
     (UsersContainer);

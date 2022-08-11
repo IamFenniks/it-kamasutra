@@ -17,7 +17,7 @@ export const userAPI = {
     }
 }
 
-export const fllowedAPI = {
+export const followedAPI = {
     unfollow(userId) {
         return instance.delete(`follow/${userId}`)
         .then(response => {

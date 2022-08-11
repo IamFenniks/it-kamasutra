@@ -1,5 +1,5 @@
-import { userAPI } from "../api/api";
-import { toggleFetching } from "./commonReduser";
+import { followedAPI, userAPI } from "../api/api";
+import { toggleDisable, toggleFetching } from "./commonReduser";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -83,14 +83,43 @@ export const setTotalCount = (totalCount) => {
 // ThunkCtreator Start
 export const getUsersThC = (pageSize, currentPage) => {
     return (dispatch) => {
+        // debugger
         dispatch(setCurrentPage(currentPage));
-        toggleFetching(true);
+        dispatch(toggleFetching(true));
 
         userAPI.getUsers(pageSize, currentPage)
-            .then(data => { toggleFetching(false); 
+            .then(data => { dispatch(toggleFetching(false)); 
                             dispatch(setUsers(data.items));
                             dispatch(setTotalCount(data.totalCount)); 
                         });  
+    }
+}
+
+export const unfollowThC = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleDisable(true, userId));
+        followedAPI.unfollow(userId)
+            .then(data => { 
+                // debugger
+                if(data.resultCode == 0) {
+                    dispatch(unfollow(userId))
+                }
+                dispatch(toggleDisable(false, userId)); 
+        });
+    }
+}
+
+export const followThC = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleDisable(true, userId));
+        followedAPI.follow(userId)
+            .then(data => { 
+                // debugger
+                if(data.resultCode == 0) {
+                    dispatch(follow(userId))
+                }
+                dispatch(toggleDisable(false, userId)); 
+        });
     }
 }
 // ThunkCtreator End
