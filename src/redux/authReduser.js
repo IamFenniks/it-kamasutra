@@ -1,3 +1,5 @@
+import { loginAPI } from "../api/api";
+
 const SET_USER_DATA = 'SET_USER_DATA';
 
 let initialState = {
@@ -18,10 +20,27 @@ export const authReduser = (state = initialState, action) => {
     }
 }
 
+// ActionCreators Start
 export const setAuthUserData = (email, id, login) => { 
     // debugger
     return { type: SET_USER_DATA, userData: { email, id, login } }
 }
+// ActionCreators Finish
+
+// ThunkCreators Start
+export const isAuthThC = () => {
+    return (dispatch) => {
+        loginAPI.auth()
+            .then(data => {
+                // debugger
+               if(data.resultCode === 0){
+                    let {email, id, login} = data.data;
+                    dispatch(setAuthUserData(email, id, login)); 
+               }
+            });
+    }
+}
+// ThunkCreators Finish
 
 export default authReduser;
   
