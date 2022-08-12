@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { loginAPI } from "../../api/api";
 import { setAuthUserData, isAuthThC } from '../../redux/authReduser';
 import Header from "./Header";
 

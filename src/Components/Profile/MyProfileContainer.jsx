@@ -5,16 +5,16 @@ import Profile from './Profile';
 import { addUserProfile } from '../../redux/profileReduser';
 import { toggleFetching } from '../../redux/commonReduser'
 import Preloader from '../Common/Preloader';
+import { ProfileAPI } from '../../api/api';
 
 class MyProfileContainer extends React.Component {
     componentDidMount() {
-        // debugger
         this.props.toggleFetching(true);
-        axios.get('https://social-network.samuraijs.com/api/1.0/profile/2')
-            .then(response => {
+        ProfileAPI.getMyProfile()
+            .then(data => {
                 // debugger
                 this.props.toggleFetching(false);
-                this.props.addUserProfile(response.data) 
+                this.props.addUserProfile(data) 
             }
         );
     }
@@ -30,6 +30,6 @@ let mapStateToProps = (state) => {
     return { 
         profile: state.profilePage.userProfile,
         isFetching: state.common.isFetching
-    }
+    } 
 }
 export default connect(mapStateToProps, { addUserProfile, toggleFetching }) (MyProfileContainer);

@@ -6,6 +6,7 @@ import Profile from './Profile';
 import { addUserProfile } from '../../redux/profileReduser';
 import { toggleFetching } from '../../redux/commonReduser'
 import Preloader from '../Common/Preloader';
+import { ProfileAPI } from '../../api/api';
 
 export function withRouter(Children){
     
@@ -22,11 +23,11 @@ class ProfileContainer extends React.Component {
         this.props.toggleFetching(true);
         let userId = this.props.match.params.userId;
         if(!userId) userId = 2;
-        axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + userId)
-            .then(response => {
+        ProfileAPI.getUserProfile(userId)
+            .then(data => {
                 // debugger
                 this.props.toggleFetching(false);
-                this.props.addUserProfile(response.data) 
+                this.props.addUserProfile(data) 
             }
         );
     }
