@@ -1,12 +1,10 @@
-import axios from 'axios';
 import React from 'react';
 import {useParams} from 'react-router-dom'
 import { connect } from 'react-redux';
 import Profile from './Profile';
-import { addUserProfile } from '../../redux/profileReduser';
-import { toggleFetching } from '../../redux/commonReduser'
+import { toggleFetching } from '../../redux/commonReduser';
+import { getUserProfThC } from '../../redux/profileReduser';
 import Preloader from '../Common/Preloader';
-import { ProfileAPI } from '../../api/api';
 
 export function withRouter(Children){
     
@@ -23,13 +21,8 @@ class ProfileContainer extends React.Component {
         this.props.toggleFetching(true);
         let userId = this.props.match.params.userId;
         if(!userId) userId = 2;
-        ProfileAPI.getUserProfile(userId)
-            .then(data => {
-                // debugger
-                this.props.toggleFetching(false);
-                this.props.addUserProfile(data) 
-            }
-        );
+
+        this.props.getUserProfThC(userId); 
     }
 
     render() {
@@ -48,4 +41,4 @@ let mapStateToProps = (state) => {
 
 let UrlContainer = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, { addUserProfile, toggleFetching }) (UrlContainer);
+export default connect(mapStateToProps, { getUserProfThC, toggleFetching }) (UrlContainer);
