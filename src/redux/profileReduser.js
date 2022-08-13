@@ -47,11 +47,9 @@ export const profileReduser = (state = initialState, action) => {
 export const addPost = () => {
     return { type: ADD_POST };
 };
-
 export const updateNewPostText = (postText) => {
     return { type: UPDATE_NEW_POST_TEXT, newText: postText };
 };
-
 export const addUserProfile = (profile) => {
     return { type: ADD_USER_PROFILE, profile};
 }
@@ -70,7 +68,6 @@ export const getMyProfThC = () => {
         );
     }
 }
-
 export const getUserProfThC = (userId) => {
     return (dispatch) => {
         dispatch(toggleFetching(true));

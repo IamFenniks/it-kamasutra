@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Profile from './Profile';
 import { getMyProfThC } from '../../redux/profileReduser';
 import Preloader from '../Common/Preloader';
+import { Navigate } from 'react-router-dom';
 
 class MyProfileContainer extends React.Component {
     componentDidMount() {
@@ -10,7 +11,8 @@ class MyProfileContainer extends React.Component {
     }
 
     render() {
-        if(!this.props.profile) return  <Preloader /> 
+        if(!this.props.profile) return  <Preloader />
+        if(!this.props.isAuth) return <Navigate to='/login' />
         // debugger
         return <Profile { ...this.props } profile={ this.props.profile } />
     }
@@ -19,7 +21,8 @@ class MyProfileContainer extends React.Component {
 let mapStateToProps = (state) => {
     return { 
         profile: state.profilePage.userProfile,
-        isFetching: state.common.isFetching
+        isFetching: state.common.isFetching,
+        isAuth: state.auth.isAuth
     } 
 }
 export default connect(mapStateToProps, { getMyProfThC }) (MyProfileContainer);
