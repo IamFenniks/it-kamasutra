@@ -1,10 +1,11 @@
 import React from 'react';
-import {Navigate, useParams} from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 import { connect } from 'react-redux';
 import Profile from './Profile';
 import { toggleFetching } from '../../redux/commonReduser';
 import { getUserProfThC } from '../../redux/profileReduser';
 import Preloader from '../Common/Preloader';
+import { WithAuthRedirect } from '../Hoc/WithAuthRedirect';
 
 export function withRouter(Children){
     
@@ -26,21 +27,21 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
-        if(!this.props.profile) return  <Preloader /> 
-        if(!this.props.isAuth) return <Navigate to='/login' />
+        if(!this.props.profile) return  <Preloader />
         // debugger
         return <Profile { ...this.props } profile={ this.props.profile } />
     }
 }
 
+let AuthRedirectComponent = WithAuthRedirect(ProfileContainer);
+
 let mapStateToProps = (state) => {
     return { 
         profile: state.profilePage.userProfile,
-        isFetching: state.common.isFetching,
-        isAuth: state.auth.isAuth
+        isFetching: state.common.isFetching
     }
 }
 
-let UrlContainer = withRouter(ProfileContainer)
+let UrlContainer = withRouter(AuthRedirectComponent)
 
 export default connect(mapStateToProps, { getUserProfThC, toggleFetching }) (UrlContainer);
