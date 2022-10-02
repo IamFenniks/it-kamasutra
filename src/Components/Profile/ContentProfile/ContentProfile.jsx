@@ -9,7 +9,7 @@ const ContentProfile = (props) => {
         <div className={style.content_profile}>
             <div>
                 <img src={ props.userInfo.photos.small === null ? profilePNG : props.userInfo.photos.small} alt='profile image' />
-                <ProfileStatus status='Testing status' />
+                <ProfileStatus status={props.status} updateStatus={ props.updateStatus } />
             </div>
 
             <div className={style.profile}>

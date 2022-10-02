@@ -4,6 +4,7 @@ import { toggleFetching } from "./commonReduser";
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const ADD_USER_PROFILE = 'ADD-USER-PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 let initialState = {
     postData: [
@@ -12,7 +13,8 @@ let initialState = {
         { id: 2, text: 'Это статья номер 3' }
     ],
     newPostText: '',
-    userProfile: null
+    userProfile: null,
+    status: ''
 };
 
 export const profileReduser = (state = initialState, action) => {
@@ -38,6 +40,12 @@ export const profileReduser = (state = initialState, action) => {
                 ...state,
                 userProfile: action.profile
             }
+
+        case SET_STATUS:
+            return {
+                ...state,
+                status: action.status
+            }
             
         default: return state;
     }
@@ -53,33 +61,47 @@ export const updateNewPostText = (postText) => {
 export const addUserProfile = (profile) => {
     return { type: ADD_USER_PROFILE, profile};
 }
+export const setUserStatus = (status) => ({ type: SET_STATUS, status })
 // ActionCreators Finish
 
 // Thunks Start
-export const getMyProfThC = () => {
-    return (dispatch) => {
-        dispatch(toggleFetching(true));
-        ProfileAPI.getMyProfile()
-            .then(data => {
-                // debugger
-                dispatch(toggleFetching(false));
-                dispatch(addUserProfile(data)) 
-            }
-        );
-    }
+export const getMyProfThC = () => (dispatch) => {
+    dispatch(toggleFetching(true));
+    ProfileAPI.getMyProfile()
+        .then(response => {
+            // debugger
+            dispatch(toggleFetching(false));
+            dispatch(addUserProfile(response.data)) 
+        }
+    );
 }
-export const getUserProfThC = (userId) => {
-    return (dispatch) => {
-        dispatch(toggleFetching(true));
-        ProfileAPI.getUserProfile(userId)
-            .then(data => {
-                // debugger
-                dispatch(toggleFetching(false));
-                dispatch(addUserProfile(data)) 
-            }
-        );
-    }
+export const getUserProfThC = (userId) => (dispatch) => {
+    dispatch(toggleFetching(true));
+    ProfileAPI.getUserProfile(userId)
+        .then(response => {
+            // debugger
+            dispatch(toggleFetching(false));
+            dispatch(addUserProfile(response.data)) 
+        }
+    );
 }
+export const getUserStatusThC = (userId) => (dispatch) => {
+    ProfileAPI.getUserStatus(userId)
+        .then(response => {
+            // debugger
+            dispatch(setUserStatus(response.data)); 
+        }
+    );
+}
+export const updateStatusThC = (status) => (dispatch) => {
+    ProfileAPI.updateStatus(status)
+        .then(response => {
+            if(response.data.resaultCode === 0)
+            dispatch(setUserStatus(status)); 
+        }
+    );
+}
+
 // Thunks Finish
 
 export default profileReduser;
