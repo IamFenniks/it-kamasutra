@@ -14,36 +14,41 @@ class ProfileStatus extends React.Component {
         });
     }
 
-    deActivateEditMode = () =>{
-        this.setState({
-            editMode: false    
-        });
-        // this.props.updateStatus(this.statusInputRef.current.value); здесь тоже убираем реф
-        this.props.updateStatus(this.state.status);
-    }
-
     onStatusChange = (e) => { // ставим обра обработчик события "е"
         this.setState({
             status: e.currentTarget.value
         });
     }
 
-    componentDidUpdate(prevState, prevProps){
-        debugger;
-        let a = this.state;
-        let b = this.props;
+    deActivateEditMode = () =>{
+        this.setState({
+            editMode: false    
+        });
 
-        console.log('componentDidUpdated');
+        // this.props.updateStatus(this.statusInputRef.current.value); здесь тоже убираем реф
+        this.props.updateStatus(this.state.status);
+        // this.forceUpdate();
+    }
+
+
+    componentDidUpdate(prevProps, prevState){
+        if(prevProps.status !== this.props.status){
+            this.setState({
+                status: this.props.status
+            });
+        }
+
+        //console.log('componentDidUpdated');
     }
 
     render (){
-        console.log('render');
+        //console.log('render');
         return (
             <div>
                 { !this.state.editMode && 
                     <div>
                         <span onDoubleClick={ this.activateEditMode }>
-                            { this.state.status }
+                            { this.props.status }
                         </span>
                     </div>
                 }
@@ -54,7 +59,7 @@ class ProfileStatus extends React.Component {
                             autoFocus={ true }
                             //    ref={ this.statusInputRef }
                             onChange={ this.onStatusChange } // и вносим изменения в
-                            value={ this.state .status } // меняем реф на value
+                            value={ this.state.status } // меняем реф на value
                             onBlur={ this.deActivateEditMode } />
                     </div>
                 }

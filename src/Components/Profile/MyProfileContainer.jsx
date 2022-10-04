@@ -9,7 +9,7 @@ import { compose } from 'redux';
 class MyProfileContainer extends React.Component {
     componentDidMount() {
         this.props.getMyProfThC();
-        this.props.getUserStatusThC(25073)
+        this.props.getUserStatusThC(25073);
     }
 
     render() {

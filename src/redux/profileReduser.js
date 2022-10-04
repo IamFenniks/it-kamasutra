@@ -64,6 +64,8 @@ export const addUserProfile = (profile) => {
 export const setUserStatus = (status) => ({ type: SET_STATUS, status })
 // ActionCreators Finish
 
+//----------------------------------------
+
 // Thunks Start
 export const getMyProfThC = () => (dispatch) => {
     dispatch(toggleFetching(true));
@@ -96,8 +98,9 @@ export const getUserStatusThC = (userId) => (dispatch) => {
 export const updateStatusThC = (status) => (dispatch) => {
     ProfileAPI.updateStatus(status)
         .then(response => {
-            if(response.data.resaultCode === 0)
-            dispatch(setUserStatus(status)); 
+            if(response.data.resaultCode === 0) {
+                dispatch(setUserStatus(status)); 
+            }
         }
     );
 }
