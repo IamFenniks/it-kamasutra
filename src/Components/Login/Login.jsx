@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from 'yup';
 import style from './Login.module.css';
 
@@ -32,54 +32,46 @@ const FormikLogin = () => {
                 
             }}
         >
-            {formik => (
-                <div className={style.login_form}>
-                    <h3>Войти с помощью email</h3>
+            <div className={style.login_form}>
+                <h3>Войти с помощью email</h3>
 
-                    <form onSubmit={formik.handleSubmit}>
-                        <div className={style.form_group}>
-                            <label htmlFor="firstName">Имя</label>
-                            <input id="firstName" type="text" {...formik.getFieldProps('firstName')} />
-                            {formik.touched.firstName && formik.errors.firstName ? (
-                                <div>{formik.errors.firstName}</div>
-                            ) : null}
-                        </div>
+                <Form>
+                    <div className={style.form_group}>
+                        <label htmlFor="firstName">Имя</label>
+                        <Field name="firstName" type="text" />
+                        <ErrorMessage name="firstName" />
+                    </div>
 
-                        <div className={style.form_group}>
-                            <label htmlFor="lastName">Фамилия</label>
-                            <input id="lastName" type="text" {...formik.getFieldProps('lastName')} />
-                            {formik.touched.lastName && formik.errors.lsstName ? (
-                                <div>{formik.errors.lastName}</div>
-                            ) : null}
-                        </div>
+                    <div className={style.form_group}>
+                        <label htmlFor="lastName">Фамилия</label>
+                        <Field name="lastName" type="text" />
+                        <ErrorMessage name="lastName" />
+                    </div>
 
-                        <div className={style.form_group}>
-                            <label htmlFor="email">Email</label>
-                            <input id="email" type="email" {...formik.getFieldProps('email')} />
-                            {formik.touched.email && formik.errors.email ? (
-                                <div>{formik.errors.email}</div>
-                            ) : null}
-                        </div>
+                    <div className={style.form_group}>
+                        <label htmlFor="email">Email</label>
+                        <Field name="email" type="email" />
+                        <ErrorMessage name="email" />
+                    </div>
 
-                        <div className={style.form_group}>
-                            <button className={style.submit} type="submit">Отправить</button>
-                            <button className={style.reset} type="reset" onClick={formik.resetForm}>Сбросить</button>
-                        </div>
-                    </form>
-                </div>
-            )}
-        </Formik>
-    )
+                    <div className={style.form_group}>
+                        <button className={style.submit} type="submit">Отправить</button>
+                        <button className={style.reset} type="reset">Сбросить</button>
+                    </div>
+                </Form>
+            </div>
+    </Formik>
+)
 }
 
 const Login = (props) => {
-    return (
-        <div className={style.login_page}>
-            <h1>Войти на сайт.</h1>
+return (
+    <div className={style.login_page}>
+        <h1>Войти на сайт.</h1>
 
-            <FormikLogin />
-        </div>
-    )
+        <FormikLogin />
+    </div>
+)
 }
 
 export default Login;
