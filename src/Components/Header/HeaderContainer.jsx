@@ -6,6 +6,7 @@ import Header from "./Header";
 class HeaderContainer extends React.Component {
     componentDidMount() {
         this.props.isAuthThC();
+        this.props.logoutThC();
     }
 
     render () {
@@ -14,10 +15,10 @@ class HeaderContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-    // debugger
+    // debugger;
     return {
         isAuth: state.auth.isAuth,
-        login: state.auth.userData.login
+        login: state.auth.login // Здесь я допустил ошибку login: state.auth.userData.login
     }
 }
 

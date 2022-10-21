@@ -4,7 +4,7 @@ import logo from './../../images/logo.png';
 import { Link } from "react-router-dom";
 
 const Header = (props) => {
-    // debugger
+    // debugger;
     return (
         <header className={ style.app_header }>
             <img src={ logo } alt='Логотип' className={ style.headerImg } />
@@ -17,7 +17,7 @@ const Header = (props) => {
 
             <div className={style.login}>
                 { props.isAuth 
-                    ? <div>{ props.login } - <button onClick={ props.logoutThC }>Выйти</button> </div>
+                    ? <div className={style.logout}><span>{ props.login }</span> - <button onClick={ props.logoutThC }>Выйти</button> </div>
                     : <Link to='/login'>Войти</Link> }
             </div>
         </header>

@@ -16,8 +16,7 @@ export const authReduser = (state = initialState, action) => {
         case SET_USER_DATA:
             return { 
                 ...state,
-                ...action.payload,
-                isAuth: true
+                ...action.payload
             }
         
         default: return state;
@@ -56,7 +55,7 @@ export const loginThC = (email, password, rememberMe) => (dispatch) => {
 export const logoutThC = () => (dispatch) => {
     loginAPI.logout()
         .then(response => {
-            debugger;
+            // debugger;
             if(response.data.resultCode === 0){
                 dispatch(setAuthUserData(null, null, null, false)); 
             }

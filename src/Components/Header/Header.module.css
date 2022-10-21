@@ -22,4 +22,15 @@
 }
 .login{text-align: right;}
 .login a{ color: white; text-decoration: none; }
-  
+button{
+  cursor: pointer;
+  border: 1px solid blue;
+  border-radius: 3px;
+}
+button:hover{
+  background-color: gainsboro;
+}
+button:active{
+  background-color: darkgrey;
+}
+  .logout{}

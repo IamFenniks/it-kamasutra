@@ -5,16 +5,17 @@
 .login_form {
     width: fit-content;
     margin: 0 auto;
-    padding: 10px;
-    background-color: rgba(9,9,9, .5);
+    padding: 0 10px 10px;
+    background-color: rgba(9,9,9, .2);
     border: 1px solid blue;
     border-radius: 5px;
 }
-.login_form form > div{
+.login_form form > .form_group{
     display: grid;
     grid-template-columns: 6fr 6fr;
     grid-template-rows: auto;
-    grid-gap: 10px;
+    grid-column-gap: 21px;
+    margin-bottom: 10px;
 }
 .err{color: red;}
 
@@ -29,4 +30,7 @@
 }
 .login_form form button:active{
     background-color: darkgrey;
+}
+input[type="checkbox"] {
+    width: max-content;
 }
