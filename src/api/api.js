@@ -37,12 +37,18 @@ export const loginAPI = {
             .then(response => {
                 return response.data
             })
+    },
+    login( email, password, rememberMe = false ) {
+        return instance.post('auth/login', { email, password, rememberMe });
+    },
+    logout() {
+        return instance.delete('auth/login');
     }
 }
 
 export const ProfileAPI = {
-    getMyProfile() {
-        return instance.get('profile/2');    
+    getMyProfile(userId) {
+        return instance.get('profile/25073');    
     },
     
     getUserProfile(userId) {

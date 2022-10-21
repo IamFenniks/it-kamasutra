@@ -1,0 +1,32 @@
+.login_page {
+    width: 100%;
+    height: auto;
+}
+.login_form {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: rgba(9,9,9, .5);
+    border: 1px solid blue;
+    border-radius: 5px;
+}
+.login_form form > div{
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    grid-template-rows: auto;
+    grid-gap: 10px;
+}
+.err{color: red;}
+
+.login_form form button{
+    padding: 5px;
+    border-color: blue;
+    border-radius: 3px;
+}
+.login_form form button:hover{
+    background-color: gainsboro;
+    cursor: pointer;
+}
+.login_form form button:active{
+    background-color: darkgrey;
+}

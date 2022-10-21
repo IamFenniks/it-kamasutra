@@ -1,35 +1,43 @@
 import React from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { connect } from 'react-redux';
 import * as Yup from 'yup';
 import style from './Login.module.css';
+import { loginThC } from "../../redux/authReduser";
+import { Navigate } from "react-router-dom";
 
-const FormikLogin = () => {
+
+const Login = (props) => {
+    if(props.isAuth) return <Navigate to={"/myprofile"} />
+    // debugger;
+    return (
+        <div className={style.login_page}>
+            <h1>Войти на сайт.</h1>
+
+            <FormikLogin onSubmit={ props.loginThC } />
+        </div>
+    )
+}
+
+const FormikLogin = (props) => {
+    // debugger;
     return (
         <Formik
             initialValues={{
-                firstName: '',
-                lastName: '',
+                password: '',
+                rememberMe: '',
                 email: ''
             }}
             validationSchema={Yup.object({
-                firstName: Yup.string()
-                    .max(15, 'Допускается не более 15 символов')
-                    .required('Обязательное к заполнению'),
-                lastName: Yup.string()
-                    .max(20, 'Допускается не более 20 символов')
+                password: Yup.string()
+                    .min(2, 'Количество символов должно быть более 2-х')
                     .required('Обязательное к заполнению'),
                 email: Yup.string()
                     .email('Ошибка. Адрес не найден')
                     .required('Обязательное к заполнению'),
             })}
-            onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                    alert(
-                        'Форма регистрации отправлена \n ' + JSON.stringify(values, null, 2)
-                    );
-                    setSubmitting(false);
-                }, 400);
-                
+            onSubmit={(values) => {
+                props.onSubmit(values.email, values.password, values.rememberMe); // Сюда приходит!
             }}
         >
             <div className={style.login_form}>
@@ -37,21 +45,21 @@ const FormikLogin = () => {
 
                 <Form>
                     <div className={style.form_group}>
-                        <label htmlFor="firstName">Имя</label>
-                        <Field name="firstName" type="text" />
-                        <ErrorMessage name="firstName" />
-                    </div>
-
-                    <div className={style.form_group}>
-                        <label htmlFor="lastName">Фамилия</label>
-                        <Field name="lastName" type="text" />
-                        <ErrorMessage name="lastName" />
-                    </div>
-
-                    <div className={style.form_group}>
                         <label htmlFor="email">Email</label>
                         <Field name="email" type="email" />
-                        <ErrorMessage name="email" />
+                        <div className={style.err}><ErrorMessage name="email" /></div>
+                    </div>
+
+                    <div className={style.form_group}>
+                        <label htmlFor="password">Пароль</label>
+                        <Field name="password" type="password" />
+                        <div className={style.err}><ErrorMessage name="password" /></div>
+                    </div>
+
+                    <div className={style.form_group}>
+                        <label htmlFor="rememberMe">Запомнить меня</label>
+                        <Field name="rememberMe" type="checkbox" />
+                        <div className={style.err}><ErrorMessage name="rememberMe" /></div>
                     </div>
 
                     <div className={style.form_group}>
@@ -60,18 +68,12 @@ const FormikLogin = () => {
                     </div>
                 </Form>
             </div>
-    </Formik>
-)
+        </Formik>
+    )
 }
 
-const Login = (props) => {
-return (
-    <div className={style.login_page}>
-        <h1>Войти на сайт.</h1>
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth
+});
 
-        <FormikLogin />
-    </div>
-)
-}
-
-export default Login;
+export default connect(mapStateToProps, { loginThC }) (Login);

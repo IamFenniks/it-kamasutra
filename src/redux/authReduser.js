@@ -14,16 +14,19 @@ let initialState = {
 export const authReduser = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA:
-            return { ...state, userData: action.userData, isAuth: true }
+            return { 
+                ...state,
+                ...action.payload,
+                isAuth: true
+            }
         
         default: return state;
     }
 }
 
 // ActionCreators Start
-export const setAuthUserData = (email, id, login) => { 
-    // debugger
-    return { type: SET_USER_DATA, userData: { email, id, login } }
+export const setAuthUserData = (userId, email, login, isAuth) => { 
+    return { type: SET_USER_DATA, payload: { userId, email, login, isAuth } }
 }
 // ActionCreators Finish
 
@@ -32,14 +35,34 @@ export const isAuthThC = () => {
     return (dispatch) => {
         loginAPI.auth()
             .then(data => {
-                // debugger
                if(data.resultCode === 0){
-                    let {email, id, login} = data.data;
-                    dispatch(setAuthUserData(email, id, login)); 
+                    let {id, email, login} = data.data;
+                    dispatch(setAuthUserData(id, email, login, true)); 
                }
             });
     }
 }
+
+export const loginThC = (email, password, rememberMe) => (dispatch) => {
+    loginAPI.login( email, password, rememberMe )
+        .then(response => {
+            if(response.data.resultCode === 0){
+                dispatch(isAuthThC()); 
+            }
+        });
+    }
+
+
+export const logoutThC = () => (dispatch) => {
+    loginAPI.logout()
+        .then(response => {
+            debugger;
+            if(response.data.resultCode === 0){
+                dispatch(setAuthUserData(null, null, null, false)); 
+            }
+        });
+    }
+
 // ThunkCreators Finish
 
 export default authReduser;
