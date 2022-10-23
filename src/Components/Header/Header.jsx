@@ -17,7 +17,11 @@ const Header = (props) => {
 
             <div className={style.login}>
                 { props.isAuth 
-                    ? <div className={style.logout}><span>{ props.login }</span> - <button onClick={ props.logoutThC }>Выйти</button> </div>
+                    ? <div className={style.logout}>
+                        <span>{ props.login }</span> 
+                        &nbsp;&nbsp; 
+                        <button onClick={ props.logoutThC }>Выйти</button>
+                    </div>
                     : <Link to='/login'>Войти</Link> }
             </div>
         </header>

@@ -33,16 +33,17 @@ const FormikLogin = (props) => {
                     .min(2, 'Количество символов должно быть более 2-х')
                     .required('Необхоимо заполнить'),
                 email: Yup.string()
-                    .email('Ошибка. Адрес не найден')
+                    .email('Не корректный адрес.')
                     .required('Необхоимо заполнить'),
                 rememberMe: Yup.bool()
                     .oneOf([true], "Необходимо выбрать")
                     .required('Необходимо выбрать')
             })}
-            onSubmit={(values) => {
-                props.onSubmit(values.email, values.password, values.rememberMe); // Сюда приходит!
+            onSubmit={(values, {setStatus}) => {
+                props.onSubmit(values.email, values.password, values.rememberMe, setStatus); // Сюда приходит!
             }}
         >
+            {({ isValid, dirty, status }) => (
             <div className={style.login_form}>
                 <h4>Войти с помощью email</h4>
 
@@ -69,11 +70,19 @@ const FormikLogin = (props) => {
                     </div>
 
                     <div className={style.form_group}>
-                        <button className={style.submit} type="submit">Войти</button>
+                        <button 
+                            className={style.submit} 
+                            type="submit"
+                            disabled={!isValid || !dirty}
+                        >
+                            Войти
+                        </button>
                         <button className={style.reset} type="reset">Сбросить</button>
                     </div>
+                    <div className={style.err}>{ status }</div>
                 </Form>
             </div>
+            )}
         </Formik>
     )
 }

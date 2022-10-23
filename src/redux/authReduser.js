@@ -42,11 +42,13 @@ export const isAuthThC = () => {
     }
 }
 
-export const loginThC = (email, password, rememberMe) => (dispatch) => {
-    loginAPI.login( email, password, rememberMe )
+export const loginThC = (email, password, rememberMe, setStatus) => (dispatch) => {
+    loginAPI.login( email, password, rememberMe)
         .then(response => {
             if(response.data.resultCode === 0){
                 dispatch(isAuthThC()); 
+            }else{
+                setStatus("Ошибка ввода: email или пароль");
             }
         });
     }
