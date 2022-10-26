@@ -1,4 +1,5 @@
 import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
+import { appReduser } from './appReduser'
 import authReduser from "./authReduser";
 import commonReduser from "./commonReduser";
 import dialogsReduser from "./dialogsReduser";
@@ -11,7 +12,8 @@ let reducers = combineReducers ({
     dialogsPage: dialogsReduser,
     usersPage: usersReduser,
     common: commonReduser,
-    auth: authReduser
+    auth: authReduser,
+    app: appReduser
 });
 
 let store = legacy_createStore(reducers, applyMiddleware(thunkMiddleWear));

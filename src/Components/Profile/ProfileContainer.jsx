@@ -5,7 +5,6 @@ import Profile from './Profile';
 import { toggleFetching } from '../../redux/commonReduser';
 import { getUserProfThC, getUserStatusThC, updateStatusThC } from '../../redux/profileReduser';
 import Preloader from '../Common/Preloader';
-import { WithAuthRedirect } from '../Hoc/WithAuthRedirect';
 import { compose } from 'redux';
 
 export function withRouter(Children){
