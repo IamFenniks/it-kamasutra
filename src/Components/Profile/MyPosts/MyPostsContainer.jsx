@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addPost, updateNewPostText } from "../../../redux/profileReduser";
+import { addPost, updateNewPostText } from "../../../redux/redusers/profileReduser";
 import MyPosts from "./MyPosts";
 
 let mapStateToProps = (state) => {

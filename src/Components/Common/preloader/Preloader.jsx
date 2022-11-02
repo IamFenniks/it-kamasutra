@@ -4,7 +4,7 @@ import style from './Preloader.module.css'
 
 const Preloader = () => {
     return (
-        <div className={ style.preloader } ></div>
+        <div className={ style.preloader } >Нет соединения с сервером.</div>
     )
 }
 

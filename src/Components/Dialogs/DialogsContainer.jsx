@@ -1,14 +1,14 @@
 // import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { addMessageAC, updateNewMessageTextAC } from "../../redux/dialogsReduser";
+import { addMessageAC, updateNewMessageTextAC } from "../../redux/redusers/dialogsReduser";
 import { WithAuthRedirect } from "../Hoc/WithAuthRedirect";
 import Dialogs from "./Dialogs";
 
 let mapStateToProps = (state) => {
     return {
         state: state.dialogsPage,
-        newMessageText: state.dialogsPage.newMessageText
+        newMessageText: state.dialogsPage.newMessageText // ключ: state.(redux-store ключ).(alikeReduser ключ)
     }
 }
   

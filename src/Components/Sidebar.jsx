@@ -5,7 +5,7 @@ import style from './Sidebar.module.css';
 const Sidebar = () => {
     return (
         <div className={style.app_sidebar}>
-            <nav>
+            <nav>     {/* Link изменяет адрес строки и меняет Компоненту, не перезагружая всю страницу */}
                 <div><Link to='myprofile'>Мой профиль</Link></div>
                 <div><Link to='dialogs'>Диалоги</Link></div>
                 <div><Link to='music'>Музыка</Link></div>

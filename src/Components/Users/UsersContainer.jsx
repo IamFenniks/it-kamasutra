@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getUsersThC, unfollowThC, followThC } from '../../redux/usersReduser';
+import { getUsersThC, unfollowThC, followThC } from '../../redux/redusers/usersReduser';
 import Users from './Users';
 import Preloader from '../Common/Preloader';
+import { getCurrentPage, getFollowBtnDisabled, getIsFetching, getPageSize, getTotalCount, getUsers } from '../../redux/selectors/users-selecotor';
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -39,12 +40,12 @@ class UsersContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalCount: state.usersPage.totalCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.common.isFetching,
-        followBtnDisabled: state.common.followBtnDisabled
+        users: getUsers(state),          // Здесь и ниже вызов "селекторов"
+        pageSize: getPageSize(state),
+        totalCount: getTotalCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followBtnDisabled: getFollowBtnDisabled(state)
     }
 }
 

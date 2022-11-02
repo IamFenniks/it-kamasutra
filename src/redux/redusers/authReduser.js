@@ -1,14 +1,12 @@
-import { loginAPI } from "../api/api";
+import { loginAPI } from "../../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
 let initialState = {
-    userData: {
-        email: null,
-        id: null,
-        login: null,
-        isAuth: false
-    }
+    userId: null,
+    email : null,
+    login: null,
+    isAuth: false
 };
 
 export const authReduser = (state = initialState, action) => {

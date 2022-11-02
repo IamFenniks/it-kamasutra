@@ -1,4 +1,3 @@
-import { loginAPI } from "../api/api";
 import { isAuthThC } from "./authReduser";
 
 const SET_INISIALIZED = 'SET_INISIALIZED';

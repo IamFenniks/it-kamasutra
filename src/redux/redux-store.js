@@ -1,10 +1,10 @@
 import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
-import { appReduser } from './appReduser'
-import authReduser from "./authReduser";
-import commonReduser from "./commonReduser";
-import dialogsReduser from "./dialogsReduser";
-import profileReduser from "./profileReduser";
-import usersReduser from "./usersReduser";
+import { appReduser } from './redusers/appReduser'
+import authReduser from "./redusers/authReduser";
+import commonReduser from "./redusers/commonReduser";
+import dialogsReduser from "./redusers/dialogsReduser";
+import profileReduser from "./redusers/profileReduser";
+import usersReduser from "./redusers/usersReduser";
 import thunkMiddleWear from 'redux-thunk';
 
 let reducers = combineReducers ({

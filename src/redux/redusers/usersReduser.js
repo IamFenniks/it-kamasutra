@@ -1,4 +1,4 @@
-import { followedAPI, userAPI } from "../api/api";
+import { followedAPI, userAPI } from "../../api/api";
 import { toggleDisable, toggleFetching } from "./commonReduser";
 
 const FOLLOW = 'FOLLOW';

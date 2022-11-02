@@ -6,13 +6,13 @@ import News from "./Components/News/News";
 import { Route, Routes } from "react-router-dom";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
-import ProfileContainer, { withRouter } from "./Components/Profile/ProfileContainer";
+import ProfileContainer from "./Components/Profile/ProfileContainer";
 import MyProfileContainer from "./Components/Profile/MyProfileContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import LoginPage from "./Components/Login/Login";
 import React from "react";
 import { connect } from 'react-redux';
-import { inisializeApp } from "./redux/appReduser";
+import { inisializeApp } from "./redux/redusers/appReduser";
 import { compose } from "redux";
 import Preloader from "./Components/Common/Preloader";
 
@@ -32,7 +32,13 @@ class App extends React.Component {
         <Sidebar />
   
         <div className="app_pages">
-          <Routes>
+
+          {/*
+          *  Сейчас используется другое вместро Route и т.д.
+          *  https://reactrouter.com/en/v6.3.0/api#useparams
+          */}
+
+          <Routes>   {/* Читает путь в адресн. стр-ке и выдает соответв. компоненту*/}
             <Route path="/myprofile" element={<MyProfileContainer />} />
             <Route path="/profile/:userId" element={<ProfileContainer />} />
             <Route path="/dialogs" element={<DialogsContainer />} />
@@ -55,7 +61,7 @@ let mapStateToProps = (state) => ({
 })
 
 export default compose(
-  connect(mapStateToProps, { inisializeApp }),
-  withRouter
+  connect(mapStateToProps, { inisializeApp })
+  // Возможно понадобится хук useRouter()
 ) (App);
 

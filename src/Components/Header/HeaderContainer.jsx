@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setAuthUserData, logoutThC } from '../../redux/authReduser';
+import { setAuthUserData, logoutThC } from '../../redux/redusers/authReduser';
 import Header from "./Header";
 
 class HeaderContainer extends React.Component {
@@ -14,6 +14,7 @@ let mapStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,
         login: state.auth.login // Здесь я допустил ошибку login: state.auth.userData.login
+     // ключ:  state.(redux-store ключ).(alikeReduser ключ)
     }
 }
 

@@ -1,4 +1,4 @@
-import { ProfileAPI } from "../api/api";
+import { ProfileAPI } from "../../api/api";
 import { toggleFetching } from "./commonReduser";
 
 const ADD_POST = 'ADD-POST';

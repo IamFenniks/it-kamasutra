@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Profile from './Profile';
-import { getMyProfThC, getUserStatusThC, updateStatusThC } from '../../redux/profileReduser';
+import { getMyProfThC, getUserStatusThC, updateStatusThC } from '../../redux/redusers/profileReduser';
 import Preloader from '../Common/Preloader';
 import { WithAuthRedirect } from '../Hoc/WithAuthRedirect';
 import { compose } from 'redux';
@@ -20,8 +20,8 @@ class MyProfileContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-    return { 
-        profile: state.profilePage.userProfile,
+    return {                                    // До селекторов
+        profile: state.profilePage.userProfile, // ключ: state.(redux-store ключ).(alikeReduser ключ)
         isFetching: state.common.isFetching,
         status: state.profilePage.status
     } 

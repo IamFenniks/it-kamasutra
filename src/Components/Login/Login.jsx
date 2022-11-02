@@ -3,7 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
 import style from './Login.module.css';
-import { loginThC } from "../../redux/authReduser";
+import { loginThC } from "../../redux/redusers/authReduser";
 import { Navigate } from "react-router-dom";
 
 
