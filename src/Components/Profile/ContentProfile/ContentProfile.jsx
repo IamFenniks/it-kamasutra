@@ -2,6 +2,7 @@ import React from "react";
 import style from './ContentProfile.module.css';
 import profilePNG from './../../../images/profile.png';
 import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHook from "./ProfileStatusWithHook";
 
 const ContentProfile = (props) => {
     // debugger
@@ -9,7 +10,7 @@ const ContentProfile = (props) => {
         <div className={style.content_profile}>
             <div>
                 <img src={ props.userInfo.photos.small === null ? profilePNG : props.userInfo.photos.small} alt='profile image' />
-                <ProfileStatus status={props.status} updateStatus={ props.updateStatus } />
+                <ProfileStatusWithHook status={props.status} updateStatus={ props.updateStatus } />
             </div>
 
             <div className={style.profile}>

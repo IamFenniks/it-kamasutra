@@ -45,7 +45,8 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return { 
-        profile: state.profilePage.userProfile,
+        // ключ:  state.(redux-store ключ).(alikeReduser ключ)
+        profile: state.profilePage.userProfile, 
         isFetching: state.common.isFetching,
         status: state.profilePage.status,
         authorizedUserId: state.auth.userId,

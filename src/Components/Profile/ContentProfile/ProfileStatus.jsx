@@ -4,7 +4,7 @@ class ProfileStatus extends React.Component {
     // statusInputRef = React.createRef(); - реф фиксирует value инпута, поэтом он не подходит
 
     state = {
-        editMode: false,
+        editMode: false,          // Режим редактирования <input />
         status: this.props.status // Вместо реф заносим в лок status глоб
     }
 
@@ -48,7 +48,7 @@ class ProfileStatus extends React.Component {
                 { !this.state.editMode && 
                     <div>
                         <span onDoubleClick={ this.activateEditMode }>
-                            { this.props.status }
+                            { this.props.status || 'Статус не указан :)' }
                         </span>
                     </div>
                 }
