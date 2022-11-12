@@ -11,6 +11,10 @@ const ProfileStatusWithHook = (props) => {
     let [ editMode, setEditMode ] = useState(false);
     let [ status, setStatus  ]    = useState(props.status);
 
+    useEffect( () => {
+        setStatus(props.status)
+    }, [props.status] );
+
     const activateEditMode = () =>{
         setEditMode( true );
     }
@@ -24,10 +28,6 @@ const ProfileStatusWithHook = (props) => {
     const onStatusChange = (e) => { 
         setStatus(e.currentTarget.value);
     }
-
-    
-
-
     // componentDidUpdate(prevProps, prevState){
     //     if(prevProps.status !== props.status){
     //         setState({
@@ -37,8 +37,6 @@ const ProfileStatusWithHook = (props) => {
 
     //     //console.log('componentDidUpdated');
     // }
-
-    
     return (
         <div>
             { !editMode && 
