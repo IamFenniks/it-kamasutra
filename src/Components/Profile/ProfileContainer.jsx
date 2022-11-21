@@ -24,6 +24,8 @@ export function withRouter(Children){
    }
  }
 
+ window.props = [];
+
 class ProfileContainer extends React.Component {
     componentDidMount() {
         // debugger
@@ -36,9 +38,18 @@ class ProfileContainer extends React.Component {
         this.props.getUserStatusThC(userId);
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps != this.props || nextState != this.state;
+    }
+
+
     render() {
+        window.props.push(this.props);
+        console.log(this.props); 
+        console.log('Render'); 
+
         if(!this.props.profile) return  <Preloader />
-        // debugger
+        //debugger
         return <Profile { ...this.props } profile={ this.props.profile } status={ this.props.status } updateStatus={ this.props.updateStatusThC } />
     }
 }
@@ -58,5 +69,3 @@ export default compose(
     connect(mapStateToProps, { getUserProfThC, toggleFetching, getUserStatusThC, updateStatusThC }),
     withRouter
 )(ProfileContainer)
-
-

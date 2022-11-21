@@ -10,7 +10,7 @@ let initialState = {
     postData: [
         { id: 0, text: 'Это статья номер 1' },
         { id: 1, text: 'Это статья номер 2' },
-        { id: 2, text: 'Это статья номер 3' }
+        { id: 2, text: 'Это статья номер 3' },
     ],
     newPostText: '',
     userProfile: null,
@@ -18,14 +18,14 @@ let initialState = {
 };
 
 export const profileReduser = (state = initialState, action) => {
-    
+    debugger
     let stateCopy = { ...state, ...state.postData }
     
     switch (action.type) {
         case ADD_POST:
             let newPost = {
                 id: 3,
-                text: state.newPostText,
+                text: action.postText,
             };
             stateCopy.postData.push(newPost);
             stateCopy.newPostText = "";
@@ -52,8 +52,8 @@ export const profileReduser = (state = initialState, action) => {
 };
 
 // ActionCreators Start
-export const addPost = () => {
-    return { type: ADD_POST };
+export const addPost = (postText) => {
+    return { type: ADD_POST, postText };
 };
 export const updateNewPostText = (postText) => {
     return { type: UPDATE_NEW_POST_TEXT, newText: postText };

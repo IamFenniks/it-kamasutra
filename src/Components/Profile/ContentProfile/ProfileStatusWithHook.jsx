@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const ProfileStatusWithHook = (props) => {
-    
 // Развёрнутый код
     // let stateWithSetState = useState(false);
     // let editMode = stateWithSetState[0];

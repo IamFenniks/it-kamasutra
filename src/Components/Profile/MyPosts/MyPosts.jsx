@@ -7,15 +7,17 @@ const MyPosts = (props) => {
     
     let postElement = props.posts.map( (p, index) => <Post key={index} postText={p.text} id={p.id} />);
     
-    let onAddPost = () => { 
-        props.addPost();
-    };
+    let postText = '';
 
     let onPostsChange = (e) => {
-        let postText = e.target.value;
+        postText = e.target.value;
         props.updateNewPostText(postText);
     }
-    // debugger;
+
+    let onAddPost = () => { 
+        props.addPost(props.newPostText);
+    };
+    debugger;
     return (
         <div className={style.my_posts}>
             <h3>Мои статьи</h3>
