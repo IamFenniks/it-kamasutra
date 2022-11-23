@@ -1,0 +1,8 @@
+.pagination span{cursor: pointer; margin-right: 5px;}
+.pagination span:hover{color: rgb(45, 242, 242);}
+.pagination .active{font-weight: bold;
+    background: darkcyan;
+    color: white !important;
+    padding: 0 5px;
+    border-radius: 3px;
+}

@@ -19,7 +19,6 @@ let initialState = {
 };
 
 export const profileReduser = (state = initialState, action) => {
-    debugger
     let stateCopy = { ...state, ...state.postData }
 
     switch (action.type) {
@@ -71,7 +70,7 @@ export const setUserStatus = (status) => ({ type: SET_STATUS, status })
 export const getMyProfThC = () => async (dispatch) => {
     dispatch(toggleFetching(true));
     let response = await ProfileAPI.getMyProfile();
-    // debugger
+    
     dispatch(toggleFetching(false));
     dispatch(addUserProfile(response.data))
 }
@@ -79,13 +78,13 @@ export const getMyProfThC = () => async (dispatch) => {
 export const getUserProfThC = (userId) => async (dispatch) => {
     dispatch(toggleFetching(true));
     let response = await ProfileAPI.getUserProfile(userId);
-    // debugger
+    
     dispatch(toggleFetching(false));
     dispatch(addUserProfile(response.data))
 }
 export const getUserStatusThC = (userId) => async (dispatch) => {
     let response = await ProfileAPI.getUserStatus(userId);
-    // debugger
+    
     dispatch(setUserStatus(response.data));
 }
 export const updateStatusThC = (status) => async (dispatch) => {
