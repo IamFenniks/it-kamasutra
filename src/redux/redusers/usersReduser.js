@@ -1,4 +1,5 @@
 import { followedAPI, userAPI } from "../../api/api";
+import { updateObjectInArray } from "../../utils/object-helpers";
 import { toggleDisable, toggleFetching } from "./commonReduser";
 
 const FOLLOW = 'it-kama/usersPage/FOLLOW';
@@ -18,24 +19,15 @@ export const usersReduser = (state = initialState, action) => {
     switch (action.type) {
         case FOLLOW:
             return {
-                ...state,
-               users: state.users.map(u => {
-                   if(u.id === action.id){
-                       return {...u, followed: true}
-                   }
-                   return u;
-               })
+                ...state, 
+                // this refuctoring in 'src/utils/object-helpers.js
+               users: updateObjectInArray(state.users, action.id, 'id', { followed: true })  // Подсказать параметры - Ctrl+Shift+Space
             }
-
         case UNFOLLOW:
             return {
-                ...state,
-                users: state.users.map(u => {
-                    if(u.id === action.id){
-                        return {...u, followed: false}
-                    }
-                    return u;
-                })
+                ...state, 
+                // this refuctoring in 'src/utils/object-helpers.js
+                users: updateObjectInArray(state.users, action.id, 'id', { followed: false })
             }
 
         case SET_USERS:
@@ -94,7 +86,7 @@ export const getUsersThC = (pageSize, currentPage) => {
     }
 }
 
-
+    // refuctoring of Thunk
 const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
     dispatch(toggleDisable(true, userId));
     let data = await apiMethod(userId);
@@ -104,7 +96,6 @@ const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) =>
     }
     dispatch(toggleDisable(false, userId));
 }
-
 export const followThC = (userId) => {
     return async (dispatch) => {
         // let apiMethod = followedAPI.follow.bind(followedAPI);
