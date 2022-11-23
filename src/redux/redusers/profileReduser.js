@@ -1,10 +1,11 @@
 import { ProfileAPI } from "../../api/api";
 import { toggleFetching } from "./commonReduser";
 
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const ADD_USER_PROFILE = 'ADD-USER-PROFILE';
-const SET_STATUS = 'SET_STATUS';
+                // Константы должны быть уникальны
+const ADD_POST = 'it-kama/profile/ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'it-kama/profile/UPDATE-NEW-POST-TEXT';
+const ADD_USER_PROFILE = 'it-kama/profile/ADD-USER-PROFILE';
+const SET_STATUS = 'it-kama/profile/SET_STATUS';
 
 let initialState = {
     postData: [
@@ -20,7 +21,7 @@ let initialState = {
 export const profileReduser = (state = initialState, action) => {
     debugger
     let stateCopy = { ...state, ...state.postData }
-    
+
     switch (action.type) {
         case ADD_POST:
             let newPost = {
@@ -35,7 +36,7 @@ export const profileReduser = (state = initialState, action) => {
             stateCopy.newPostText = action.newText;
             return stateCopy;
 
-        case ADD_USER_PROFILE: 
+        case ADD_USER_PROFILE:
             return {
                 ...state,
                 userProfile: action.profile
@@ -46,7 +47,7 @@ export const profileReduser = (state = initialState, action) => {
                 ...state,
                 status: action.status
             }
-            
+
         default: return state;
     }
 };
@@ -59,7 +60,7 @@ export const updateNewPostText = (postText) => {
     return { type: UPDATE_NEW_POST_TEXT, newText: postText };
 };
 export const addUserProfile = (profile) => {
-    return { type: ADD_USER_PROFILE, profile};
+    return { type: ADD_USER_PROFILE, profile };
 }
 export const setUserStatus = (status) => ({ type: SET_STATUS, status })
 // ActionCreators Finish
@@ -67,42 +68,31 @@ export const setUserStatus = (status) => ({ type: SET_STATUS, status })
 //----------------------------------------
 
 // Thunks Start
-export const getMyProfThC = () => (dispatch) => {
+export const getMyProfThC = () => async (dispatch) => {
     dispatch(toggleFetching(true));
-    ProfileAPI.getMyProfile()
-        .then(response => {
-            // debugger
-            dispatch(toggleFetching(false));
-            dispatch(addUserProfile(response.data)) 
-        }
-    );
+    let response = await ProfileAPI.getMyProfile();
+    // debugger
+    dispatch(toggleFetching(false));
+    dispatch(addUserProfile(response.data))
 }
-export const getUserProfThC = (userId) => (dispatch) => {
+
+export const getUserProfThC = (userId) => async (dispatch) => {
     dispatch(toggleFetching(true));
-    ProfileAPI.getUserProfile(userId)
-        .then(response => {
-            // debugger
-            dispatch(toggleFetching(false));
-            dispatch(addUserProfile(response.data)) 
-        }
-    );
+    let response = await ProfileAPI.getUserProfile(userId);
+    // debugger
+    dispatch(toggleFetching(false));
+    dispatch(addUserProfile(response.data))
 }
-export const getUserStatusThC = (userId) => (dispatch) => {
-    ProfileAPI.getUserStatus(userId)
-        .then(response => {
-            // debugger
-            dispatch(setUserStatus(response.data)); 
-        }
-    );
+export const getUserStatusThC = (userId) => async (dispatch) => {
+    let response = await ProfileAPI.getUserStatus(userId);
+    // debugger
+    dispatch(setUserStatus(response.data));
 }
-export const updateStatusThC = (status) => (dispatch) => {
-    ProfileAPI.updateStatus(status)
-        .then(response => {
-            if(response.data.resaultCode === 0) {
-                dispatch(setUserStatus(status)); 
-            }
-        }
-    );
+export const updateStatusThC = (status) => async (dispatch) => {
+    let response = await ProfileAPI.updateStatus(status);
+    if (response.data.resaultCode === 0) {
+        dispatch(setUserStatus(status));
+    }
 }
 
 // Thunks Finish

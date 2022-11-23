@@ -1,5 +1,5 @@
-const TOGGLE_FETCHING = 'TOGGLE-FETCHING';
-const TOGGLE_DISABLE = 'TOGGLE-DISABLE';
+const TOGGLE_FETCHING = 'it-kama/common/TOGGLE-FETCHING';
+const TOGGLE_DISABLE = 'it-kama/common/TOGGLE-DISABLE';
 
 let initialState = {
     isFetching: false,

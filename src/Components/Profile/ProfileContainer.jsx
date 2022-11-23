@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux';
 import Profile from './Profile';
 import { toggleFetching } from '../../redux/redusers/commonReduser';
-import { getUserProfThC, getUserStatusThC, updateStatusThC } from '../../redux/redusers/profileReduser';
+import { getUserProfThC, getUserStatusThC } from '../../redux/redusers/profileReduser';
 import Preloader from '../Common/Preloader';
 import { compose } from 'redux';
 
@@ -39,7 +39,7 @@ class ProfileContainer extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return nextProps != this.props || nextState != this.state;
+        return nextProps !== this.props || nextState !== this.state;
     }
 
 
@@ -50,7 +50,7 @@ class ProfileContainer extends React.Component {
 
         if(!this.props.profile) return  <Preloader />
         //debugger
-        return <Profile { ...this.props } profile={ this.props.profile } status={ this.props.status } updateStatus={ this.props.updateStatusThC } />
+        return <Profile { ...this.props } profile={ this.props.profile } status={ this.props.status } />
     }
 }
 
@@ -66,6 +66,6 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, { getUserProfThC, toggleFetching, getUserStatusThC, updateStatusThC }),
+    connect(mapStateToProps, { getUserProfThC, toggleFetching, getUserStatusThC }),
     withRouter
 )(ProfileContainer)

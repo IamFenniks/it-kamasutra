@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Profile from './Profile';
+import MyProfile from './MyProfile';
 import { getMyProfThC, getUserStatusThC, updateStatusThC } from '../../redux/redusers/profileReduser';
 import Preloader from '../Common/Preloader';
 import { WithAuthRedirect } from '../Hoc/WithAuthRedirect';
@@ -15,7 +15,7 @@ class MyProfileContainer extends React.Component {
     render() {
         if(!this.props.profile) return  <Preloader />
         // debugger
-        return <Profile { ...this.props } profile={ this.props.profile } status={ this.props.status } updateStatus={ this.props.updateStatusThC } />
+        return <MyProfile { ...this.props } profile={ this.props.profile } status={ this.props.status } updateStatus={ this.props.updateStatusThC } />
     }
 }
 

@@ -1,5 +1,5 @@
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+const ADD_MESSAGE = 'it-kama/dialogs/ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'it-kama/dialogs/UPDATE-NEW-MESSAGE-TEXT';
 
 let initialState = {
     friendsData: [

@@ -54,7 +54,11 @@ const Users = (props) => {
 
                     <div className={style.rigth_side}>
                         <div>
-                            <p><b><i>Имя:</i></b> {u.name}</p>
+                            <p>
+                                <NavLink to={'/profile/' + u.id}>
+                                    <b><i>Имя:</i></b> {u.name}
+                                </NavLink>
+                            </p>
                             <p><b><i>Статус:</i></b> {u.status}</p>
                         </div>
                         <div>

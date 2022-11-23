@@ -4,7 +4,7 @@ import mainimage from './../../images/profile_headerImg.jpg';
 import ContentProfile from "./ContentProfile/ContentProfile";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
-const Profile = (props) => {
+const MyProfile = (props) => {
     // debugger;
     return (
         <main className={style.app_main}>
@@ -13,11 +13,11 @@ const Profile = (props) => {
             </div>
 
             <div className={style.main_content}>
-                <ContentProfile userInfo={ props.profile } status={ props.status } />
+                <ContentProfile userInfo={ props.profile } status={ props.status } updateStatus={ props.updateStatus } />
                 <MyPostsContainer />
             </div>
         </main>
     );
 }
 
-export default Profile;
+export default MyProfile;

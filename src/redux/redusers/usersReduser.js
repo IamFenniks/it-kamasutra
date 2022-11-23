@@ -1,11 +1,11 @@
 import { followedAPI, userAPI } from "../../api/api";
 import { toggleDisable, toggleFetching } from "./commonReduser";
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET-USERS';
-const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
-const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT';
+const FOLLOW = 'it-kama/usersPage/FOLLOW';
+const UNFOLLOW = 'it-kama/usersPage/UNFOLLOW';
+const SET_USERS = 'it-kama/usersPage/SET-USERS';
+const SET_CURRENT_PAGE = 'it-kama/usersPage/SET-CURRENT-PAGE';
+const SET_TOTAL_COUNT = 'it-kama/usersPage/SET-TOTAL-COUNT';
 
 let initialState = {
     users: [],
@@ -82,44 +82,53 @@ export const setTotalCount = (totalCount) => {
 
 // ThunkCtreator Start
 export const getUsersThC = (pageSize, currentPage) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         // debugger
         dispatch(setCurrentPage(currentPage));
         dispatch(toggleFetching(true));
 
-        userAPI.getUsers(pageSize, currentPage)
-            .then(data => { dispatch(toggleFetching(false)); 
-                            dispatch(setUsers(data.items));
-                            dispatch(setTotalCount(data.totalCount)); 
-                        });  
+        let data = await userAPI.getUsers(pageSize, currentPage);
+        dispatch(toggleFetching(false)); 
+        dispatch(setUsers(data.items));
+        dispatch(setTotalCount(data.totalCount));  
     }
 }
 
-export const unfollowThC = (userId) => {
-    return (dispatch) => {
-        dispatch(toggleDisable(true, userId));
-        followedAPI.unfollow(userId)
-            .then(data => { 
-                // debugger
-                if(data.resultCode == 0) {
-                    dispatch(unfollow(userId))
-                }
-                dispatch(toggleDisable(false, userId)); 
-        });
+
+const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
+    dispatch(toggleDisable(true, userId));
+    let data = await apiMethod(userId);
+    // debugger
+    if(data.resultCode === 0) {
+        dispatch(actionCreator(userId))
     }
+    dispatch(toggleDisable(false, userId));
 }
 
 export const followThC = (userId) => {
-    return (dispatch) => {
-        dispatch(toggleDisable(true, userId));
-        followedAPI.follow(userId)
-            .then(data => { 
-                // debugger
-                if(data.resultCode == 0) {
-                    dispatch(follow(userId))
-                }
-                dispatch(toggleDisable(false, userId)); 
-        });
+    return async (dispatch) => {
+        // let apiMethod = followedAPI.follow.bind(followedAPI);
+        // let actionCreator = follow;
+        // followUnfollowFlow(dispatch, userId, apiMethod, actionCreator);
+        followUnfollowFlow(
+            dispatch,
+            userId, 
+            followedAPI.follow.bind(followedAPI),
+            follow
+        );
+    }
+}
+export const unfollowThC = (userId) => {
+    return async (dispatch) => {
+        // let apiMethod = followedAPI.unfollow.bind(followedAPI);
+        // let actionCreator = unfollow;
+        // followUnfollowFlow(dispatch, userId, apiMethod, actionCreator);
+        followUnfollowFlow(
+            dispatch,
+            userId, 
+            followedAPI.unfollow.bind(followedAPI),
+            unfollow
+        );
     }
 }
 // ThunkCtreator End

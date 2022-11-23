@@ -1,6 +1,6 @@
 import { isAuthThC } from "./authReduser";
 
-const SET_INISIALIZED = 'SET_INISIALIZED';
+const SET_INISIALIZED = 'it-kama/app/SET_INISIALIZED';
 
 let initialState = {
     inisialized: false
@@ -26,8 +26,8 @@ export const setInisializing = () => ( { type: SET_INISIALIZED } )
 export const inisializeApp = () => (dispatch) => {
     let promis = dispatch(isAuthThC());
     
-    Promise.all([promis]).then(() => {
-        dispatch(setInisializing());
+    Promise.all([promis]).then(() => { // Когда отработают все, другие промисы,
+        dispatch(setInisializing());   // только тогда провести инициализацию
     });
 }
 // ThunkCreators Finish
