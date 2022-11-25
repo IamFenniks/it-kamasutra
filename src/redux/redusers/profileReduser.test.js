@@ -27,13 +27,5 @@ test('Message of the new post, should be correct', () => {
 
     expect(newState.postData[3].text).toBe('it-kamasutra');
   });
-  
 
-test('After deleting length of posts should be decribment', () => {
-    let action = deletePost(1);
-
-    let newState = profileReduser(state, action);
-
-    expect(newState.postData.length).toBe(2);
-  });
   
