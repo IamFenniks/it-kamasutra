@@ -9,7 +9,7 @@ const Users = (props) => {
         <main className={ style.users }>
             <div className={ style.users_header }>
                 <h2>Пользователи</h2>
-                                                {/* COMPONENT */}
+                                    {/* -------- COMPONENT CHILDREN -------- */}
                 <TopPaginator 
                     onChangePage={ props.onChangePage } 
                     currentPage={ props.currentPage } 
@@ -19,7 +19,7 @@ const Users = (props) => {
             </div>
 
             <div className={style.users_list}>
-            {                                    /* COMPONENT */
+{                                    /* -------- COMPONENT CHILDREN --------- */
                 props.users.map(u => <User user={ u } { ...props } />)
             }
             </div>            

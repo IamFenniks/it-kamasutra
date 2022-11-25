@@ -1,7 +1,6 @@
 import React from "react";
 import style from './ContentProfile.module.css';
 import profilePNG from './../../../images/profile.png';
-import ProfileStatus from "./ProfileStatus";
 import ProfileStatusWithHook from "./ProfileStatusWithHook";
 
 const ContentProfile = (props) => {

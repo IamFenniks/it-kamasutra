@@ -41,8 +41,8 @@ class UsersContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         users: getUsers(state),          // Здесь и ниже вызов "селекторов"
-        pageSize: getPageSize(state),
-        totalCount: getTotalCount(state),
+        pageSize: getPageSize(state),    // Выводимое кол-во польз-ей на странице
+        totalCount: getTotalCount(state),// Всего зарег. польз-ей
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
         followBtnDisabled: getFollowBtnDisabled(state)

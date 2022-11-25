@@ -10,8 +10,8 @@ const SET_TOTAL_COUNT = 'it-kama/usersPage/SET-TOTAL-COUNT';
 
 let initialState = {
     users: [],
-    totalCount: 0,
-    pageSize: 24,
+    totalCount: 0, // Всего зарег. польз-ей
+    pageSize: 24,  // Выводимое кол-во польз-ей на странице
     currentPage: 1
 };
 

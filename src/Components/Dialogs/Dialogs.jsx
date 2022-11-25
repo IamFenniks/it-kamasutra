@@ -1,5 +1,4 @@
 import React from "react";
-import { addMessageAC, updateNewMessageTextAC } from "../../redux/redusers/dialogsReduser";
 import DialogFriend from "./DialogFriend/DialogsFriend";
 import DialogItem from "./DialogItem/DialogsItem";
 import style from './Dialogs.module.css';

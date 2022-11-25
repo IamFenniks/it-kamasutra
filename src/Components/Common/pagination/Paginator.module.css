@@ -6,3 +6,5 @@
     padding: 0 5px;
     border-radius: 3px;
 }
+.pagination button{margin: 0 10px;}
+.pagination button span{font-weight: 600;}

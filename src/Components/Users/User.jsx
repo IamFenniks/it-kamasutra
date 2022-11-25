@@ -5,9 +5,10 @@ import { NavLink } from "react-router-dom";
 
 
 const User = (props) => {
+    // debugger;
     let user = props.user;
     return (
-        <div key={props.id} className={style.user_element}>
+        <div key={user.id} className={style.user_element}>
             <div className={style.left_side}>
                 <NavLink to={'/profile/' + user.id}>
                     <img src={user.photos.small != null ? user.photos.small : userPhoto } alt="user avtar" />

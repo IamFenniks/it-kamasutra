@@ -19,7 +19,7 @@ export const commonReduser = (state = initialState, action) => {
                 ...state,
                 followBtnDisabled: action.fetched
                 ? [ ...state.followBtnDisabled, action.userId ]
-                : state.followBtnDisabled.filter(id => id != action.userId)
+                : state.followBtnDisabled.filter(id => id !== action.userId)
             }
             
         default: return state;
