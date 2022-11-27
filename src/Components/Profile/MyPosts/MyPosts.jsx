@@ -16,7 +16,7 @@ const MyPosts = (props) => {
     let onAddPost = () => { 
         props.addPost(props.newPostText);
     };
-    debugger;
+    // debugger;
     return (
         <div className={style.my_posts}>
             <h3>Мои статьи</h3>
