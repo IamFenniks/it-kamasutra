@@ -4,6 +4,8 @@ import { getUsersThC, unfollowThC, followThC } from '../../redux/redusers/usersR
 import Users from './Users';
 import Preloader from '../Common/Preloader';
 import { getCurrentPage, getFollowBtnDisabled, getIsFetching, getPageSize, getTotalCount, getUsers } from '../../redux/selectors/users-selecotor';
+import { withRouter } from '../Profile/ProfileContainer';
+import { compose } from 'redux';
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -49,6 +51,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, 
-    { followThC, unfollowThC, getUsersThC })
-    (UsersContainer);
+export default compose( 
+    connect(mapStateToProps, { followThC, unfollowThC, getUsersThC }),
+    withRouter
+)(UsersContainer);

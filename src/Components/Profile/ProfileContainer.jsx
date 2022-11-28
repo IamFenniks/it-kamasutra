@@ -27,18 +27,27 @@ export function withRouter(Children){
  window.props = [];
 
 class ProfileContainer extends React.Component {
-    componentDidMount() {
-        // debugger
+    refreshProfile() {
         this.props.toggleFetching(true);
-        
+            
         let userId = this.props.match.params.userId;
         if(!userId) userId = this.props.authorizedUserId;
-
+    
         this.props.getUserProfThC(userId);
         this.props.getUserStatusThC(userId);
     }
+    componentDidMount() {
+        refreshProfile();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(this.props.match.params.userId !== prevProps.match.params.userId){
+            refreshProfile();
+        }
+    }
 
     shouldComponentUpdate(nextProps, nextState) {
+        // debugger
         return nextProps !== this.props || nextState !== this.state;
     }
 
