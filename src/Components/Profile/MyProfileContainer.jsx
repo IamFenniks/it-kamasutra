@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MyProfile from './MyProfile';
-import { getMyProfThC, getUserStatusThC, updateStatusThC } from '../../redux/redusers/profileReduser';
+import { getMyProfThC, savePhotoThC, getUserStatusThC, updateStatusThC } from '../../redux/redusers/profileReduser';
 import Preloader from '../Common/Preloader';
 import { WithAuthRedirect } from '../../Hoc/withAuthRedirect';
 import { compose } from 'redux';
+import { withRouter } from './ProfileContainer';
 
 class MyProfileContainer extends React.Component {
     componentDidMount() {
@@ -15,7 +16,13 @@ class MyProfileContainer extends React.Component {
     render() {
         if(!this.props.profile) return  <Preloader />
         // debugger
-        return <MyProfile { ...this.props } profile={ this.props.profile } status={ this.props.status } updateStatus={ this.props.updateStatusThC } />
+        return <MyProfile 
+            { ...this.props } 
+            isOwner={ !this.props.match.params.userId } // Если на страничке пол-ля нет айдишки, то это Я
+            profile={ this.props.profile } 
+            status={ this.props.status } 
+            savePhoto={ this.props.savePhotoThC }
+            updateStatus={ this.props.updateStatusThC } />
     }
 }
 
@@ -28,7 +35,8 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, { getMyProfThC, getUserStatusThC, updateStatusThC }),
+    connect(mapStateToProps, { getMyProfThC, savePhotoThC, getUserStatusThC, updateStatusThC }),
+    withRouter,
     WithAuthRedirect
 )
     (MyProfileContainer);

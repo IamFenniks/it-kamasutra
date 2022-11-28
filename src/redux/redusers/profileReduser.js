@@ -6,6 +6,7 @@ const ADD_POST = 'it-kama/profile/ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'it-kama/profile/UPDATE-NEW-POST-TEXT';
 const ADD_USER_PROFILE = 'it-kama/profile/ADD-USER-PROFILE';
 const SET_STATUS = 'it-kama/profile/SET_STATUS';
+const SAVE_PHOTO = 'it-kama/profile/SAVE_PHOTO';
 
 let initialState = {
     postData: [
@@ -47,6 +48,12 @@ export const profileReduser = (state = initialState, action) => {
                 status: action.status
             }
 
+        case SAVE_PHOTO:
+            return {
+                ...state,
+                profile: { ...state.profile, photos: action.photos }
+            }
+
         default: return state;
     }
 };
@@ -62,6 +69,8 @@ export const addUserProfile = (profile) => {
     return { type: ADD_USER_PROFILE, profile };
 }
 export const setUserStatus = (status) => ({ type: SET_STATUS, status })
+
+export const savePhotoSuccess = (photos) => ({ type: SAVE_PHOTO, photos }) // photos приходят из сервака profile
 // ActionCreators Finish
 
 //----------------------------------------
@@ -82,6 +91,13 @@ export const getUserProfThC = (userId) => async (dispatch) => {
     dispatch(toggleFetching(false));
     dispatch(addUserProfile(response.data))
 }
+
+export const savePhotoThC = (photo) => async (dispatch) => {
+    let response = await ProfileAPI.savePhoto(photo);
+    
+    dispatch(savePhotoSuccess(response.data.data.photos));
+}
+
 export const getUserStatusThC = (userId) => async (dispatch) => {
     let response = await ProfileAPI.getUserStatus(userId);
     

@@ -5,10 +5,18 @@ import ProfileStatusWithHook from "./ProfileStatusWithHook";
 
 const ContentProfile = (props) => {
     // debugger
+
+    const onMainPhotoSelected = (e) => {
+        if(e.target.files.length){               // Если есть в массиве хоть одно фото (length)
+            props.savePhoto(e.target.files[0]);  // то мы его диспачим (вызываем-сохраняем) на серваке
+        }
+    }
+
     return (
         <div className={style.content_profile}>
             <div>
                 <img src={ props.userInfo.photos.small === null ? profilePNG : props.userInfo.photos.small} alt='profile image' />
+                { props.isOwner && <input type="file" onChange={ onMainPhotoSelected } /> }
                 <ProfileStatusWithHook status={props.status} updateStatus={ props.updateStatus } />
             </div>
 
