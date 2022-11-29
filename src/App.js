@@ -30,7 +30,7 @@ import { Route, Routes } from "react-router-dom";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import MyProfileContainer from "./Components/Profile/MyProfileContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
-import LoginPage from "./Components/Login/Login";
+import LoginContainer from "./Components/Login/LoginContainer";
 import React, { Suspense } from "react";
 import { connect } from 'react-redux';
 import { inisializeApp } from "./redux/redusers/appReduser";
@@ -71,7 +71,7 @@ class App extends React.Component {
               <Route path="/music" element={<Musik />} />
               <Route path="/news" element={<News />} />
               <Route path="/users" element={<UsersContainer />} />
-              <Route path="/login" element={<LoginPage />} />
+              <Route path="/login" element={<LoginContainer />} />
             </Routes>
           </Suspense>
         </div>

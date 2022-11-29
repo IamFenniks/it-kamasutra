@@ -7,7 +7,7 @@ import { loginThC } from "../../redux/redusers/authReduser";
 import { Navigate } from "react-router-dom";
 
 
-const Login = (props) => {
+const LoginContainer = (props) => {
     if(props.isAuth) return <Navigate to={"/myprofile"} />
     // debugger;
     return (
@@ -91,4 +91,4 @@ const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth
 });
 
-export default connect(mapStateToProps, { loginThC }) (Login);
+export default connect(mapStateToProps, { loginThC }) (LoginContainer);

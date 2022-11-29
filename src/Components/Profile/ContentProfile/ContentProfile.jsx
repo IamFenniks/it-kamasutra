@@ -17,6 +17,7 @@ const ContentProfile = (props) => {
             <div>
                 <img src={ props.userInfo.photos.small === null ? profilePNG : props.userInfo.photos.small} alt='profile image' />
                 { props.isOwner && <input type="file" onChange={ onMainPhotoSelected } /> }
+                                {/* --- inner COMPONENT --- */}
                 <ProfileStatusWithHook status={props.status} updateStatus={ props.updateStatus } />
             </div>
 

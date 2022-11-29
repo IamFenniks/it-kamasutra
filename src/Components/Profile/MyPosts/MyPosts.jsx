@@ -2,7 +2,7 @@ import React from "react";
 import Post from "./MyPost/Post";
 import style from './MyPosts.module.css';
 
-const MyPosts = (props) => {
+const   MyPosts = (props) => {
     
     let postElement = props.posts.map( (p, index) => <Post key={index} postText={p.text} id={p.id} />);
     
