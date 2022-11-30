@@ -2,13 +2,17 @@
   display: grid;
   grid-template-columns: 2fr 10fr;
 }
+.img_status, .profile{display: block;}
+.profile_table{display: grid; grid-template-columns: 1fr 1fr;}
 
 .table_row {
   display: grid;
-  grid-template-columns: 3fr 9fr;
+  grid-template-columns: 5fr 7fr;
   grid-gap: 5px;
 }
-
+.table_column{width: 100%;}
 .td_name {
   font-weight: 600;
-}
+} 
+.warning{color: darkgoldenrod;}
+.form_group button {margin: 0 10px;}

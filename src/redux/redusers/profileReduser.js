@@ -43,7 +43,7 @@ export const profileReduser = (state = initialState, action) => {
             }
 
         case SET_STATUS:
-            return {
+            return {  
                 ...state,
                 status: action.status
             }
@@ -69,7 +69,7 @@ export const addUserProfile = (profile) => {
     return { type: ADD_USER_PROFILE, profile };
 }
 export const setUserStatus = (status) => ({ type: SET_STATUS, status })
-debugger;
+// debugger;
 export const savePhotoSuccess = (photos) => ({ type: SAVE_PHOTO, photos }) // photos приходят из сервака profile
 // ActionCreators Finish
 
@@ -91,7 +91,7 @@ export const getUserProfThC = (userId) => async (dispatch) => {
     dispatch(toggleFetching(false));
     dispatch(addUserProfile(response.data))
 }
-debugger;
+// debugger;
 export const savePhotoThC = (photo) => async (dispatch) => {
     let response = await ProfileAPI.savePhoto(photo);
     
@@ -107,6 +107,12 @@ export const updateStatusThC = (status) => async (dispatch) => {
     let response = await ProfileAPI.updateStatus(status);
     if (response.data.resaultCode === 0) {
         dispatch(setUserStatus(status));
+    }
+}
+export const saveProfDataThC = (profile) => async (dispatch) => {
+    let response = await ProfileAPI.setProfileData(profile);
+    if (response.data.resaultCode === 0) {
+        dispatch(addUserProfile(profile));
     }
 }
 

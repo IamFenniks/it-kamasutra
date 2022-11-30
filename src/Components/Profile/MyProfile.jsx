@@ -5,7 +5,7 @@ import ContentProfile from "./ContentProfile/ContentProfile";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const MyProfile = (props) => {
-    debugger;
+    // debugger;
     return (
         <main className={style.app_main}>
             <div className={style.main_header}>
@@ -13,7 +13,7 @@ const MyProfile = (props) => {
             </div>
 
             <div className={style.main_content}>
-                <ContentProfile savePhoto={ props.savePhoto } isOwner={ props.isOwner } userInfo={ props.profile } status={ props.status } updateStatus={ props.updateStatus } />
+                <ContentProfile savePhoto={ props.savePhoto } isOwner={ props.isOwner } userInfo={ props.profile } status={ props.status } updateStatus={ props.updateStatus }  onSubmit={props.saveProfDataThC} />
                 
                 <MyPostsContainer />
             </div>
