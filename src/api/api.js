@@ -73,5 +73,9 @@ export const ProfileAPI = {
                 'Content-Type': 'multipart/form-data'
             }
         }); 
+    },
+
+    setProfileData(profile) {
+        return instance.put(`profile`, {profile});
     }
 }

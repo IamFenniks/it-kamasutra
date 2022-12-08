@@ -1,0 +1,4 @@
+.grid_tests_react_docks{
+    display: grid;
+    grid-template-columns: repeat(2fr);
+}

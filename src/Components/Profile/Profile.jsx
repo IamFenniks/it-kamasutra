@@ -13,7 +13,7 @@ const Profile = (props) => {
             </div>
 
             <div className={style.main_content}>
-                <ContentProfile userInfo={ props.profile } status={ props.status } />
+                <ContentProfile profile={ props.profile } status={ props.status } />
                 <MyPostsContainer />
             </div>
         </main>

@@ -13,7 +13,13 @@ const MyProfile = (props) => {
             </div>
 
             <div className={style.main_content}>
-                <ContentProfile savePhoto={ props.savePhoto } isOwner={ props.isOwner } userInfo={ props.profile } status={ props.status } updateStatus={ props.updateStatus }  onSubmit={props.saveProfDataThC} />
+                <ContentProfile 
+                    savePhoto={ props.savePhoto } 
+                    isOwner={ props.isOwner } 
+                    profile={ props.profile } 
+                    status={ props.status } 
+                    updateStatus={ props.updateStatus }  
+                    onSubmit={props.onSubmit} />
                 
                 <MyPostsContainer />
             </div>

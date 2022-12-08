@@ -100,19 +100,22 @@ export const savePhotoThC = (photo) => async (dispatch) => {
 
 export const getUserStatusThC = (userId) => async (dispatch) => {
     let response = await ProfileAPI.getUserStatus(userId);
-    
+    // debugger
     dispatch(setUserStatus(response.data));
 }
 export const updateStatusThC = (status) => async (dispatch) => {
     let response = await ProfileAPI.updateStatus(status);
-    if (response.data.resaultCode === 0) {
+    // debugger
+    if (response.data.data.resaultCode === 0) {
         dispatch(setUserStatus(status));
     }
 }
-export const saveProfDataThC = (profile) => async (dispatch) => {
-    let response = await ProfileAPI.setProfileData(profile);
-    if (response.data.resaultCode === 0) {
-        dispatch(addUserProfile(profile));
+export const saveProfDataThC = (profile, userId) => async (dispatch) => {
+    // const userId = getState().auth.userId;
+    const response = await ProfileAPI.setProfileData(profile);
+// debugger
+    if (response.data.data.resaultCode === 0) {
+        dispatch(getUserProfThC(userId));
     }
 }
 

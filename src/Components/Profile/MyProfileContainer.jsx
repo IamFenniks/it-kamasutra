@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MyProfile from './MyProfile';
-import { getMyProfThC, savePhotoThC, getUserStatusThC, updateStatusThC, saveProfDataThC } from '../../redux/redusers/profileReduser';
+import { getMyProfThC, 
+    savePhotoThC, 
+    getUserStatusThC, 
+    updateStatusThC, 
+    saveProfDataThC } from '../../redux/redusers/profileReduser';
 import Preloader from '../Common/Preloader';
 import { WithAuthRedirect } from '../../Hoc/withAuthRedirect';
 import { compose } from 'redux';

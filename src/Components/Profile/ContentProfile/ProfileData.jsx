@@ -11,32 +11,32 @@ const ProfileData = (props) => {
 
                     <div className={style.table_row}>
                         <div className={style.td_name}>Имя:</div>
-                        <div className={style.td_value}>{props.userInfo.fullName}</div>
+                        <div className={style.td_value}>{props.profile.fullName}</div>
                     </div>
 
                     <div className={style.table_row}>
                         <div className={style.td_name}>Кто я:</div>
-                        <div className={style.td_value}>{props.userInfo.aboutMe}</div>
+                        <div className={style.td_value}>{props.profile.aboutMe}</div>
                     </div>
 
                     <div className={style.table_row}>
                         <div className={style.td_name}>Статус поиска работы:</div>
                         <div className={style.td_value}>{
-                            props.userInfo.lookingForAJob ? 'Ищу' : 'Не ищу'}
+                            props.profile.lookingForAJob ? 'Ищу' : 'Не ищу'}
                         </div>
                     </div>
 
                     <div className={style.table_row}>
                         <div className={style.td_name}>Навыки:</div>
-                        <div className={style.td_value}>{props.userInfo.lookingForAJobDescription}</div>
+                        <div className={style.td_value}>{props.profile.lookingForAJobDescription}</div>
                     </div>
                 </div>
 
                 <div className={style.table_column}>
                     <h4>Мои контакты:</h4>
-                    {Object.keys(props.userInfo.contacts).map((key) => {
-                        if (!props.userInfo.contacts[key]) return props.userInfo.contacts[key] = <span key={key} className={style.warning} >Не установлено</span>
-                        return <Contact key={key} contactTitle={key} contactValue={props.userInfo.contacts[key]} />
+                    {Object.keys(props.profile.contacts).map((contact, index) => {
+                        if (!props.profile.contacts[contact]) return props.profile.contacts[contact] = <span key={index} className={style.warning} >Не установлено</span>
+                            return <Contact key={index} contactTitle={contact} contactValue={props.profile.contacts[contact]} />
                     })
                     }
                 </div>
@@ -51,9 +51,9 @@ const ProfileData = (props) => {
     )
 }
 // debugger;
-const Contact = ({ key, contactTitle, contactValue }) => {
+const Contact = ({ contactTitle, contactValue }) => {
     return (
-        <div key={ key } className={style.table_row}>
+        <div className={style.table_row}>
             <div className={style.td_name}>{contactTitle}: </div> <div className={style.td_value}>{contactValue}</div>
         </div>
     )

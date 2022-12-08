@@ -18,15 +18,16 @@ const ContentProfile = (props) => {
     return (
         <div className={style.content_profile}>
             <div className={style.img_status}>
-                <img src={props.userInfo.photos.small === null ? profilePNG : props.userInfo.photos.small} alt='profile image' />
+                <img src={props.profile.photos.small === null ? profilePNG : props.profile.photos.small} alt='profile image' />
                 {props.isOwner && <input type="file" onChange={onMainPhotoSelected} />}
+                
                 {/* --- inner COMPONENT --- */}
                 <ProfileStatusWithHook status={props.status} updateStatus={props.updateStatus} />
             </div>
 
             { !editMode
-                ? <ProfileData userInfo={ props.userInfo } isOwner={ props.isOwner } setEditMode={ setEditMode } />
-                : <ProfileDataForm userInfo={ props.userInfo } setEditMode={ setEditMode }  onSubmit={props.saveProfDataThC} />
+                ? <ProfileData profile={ props.profile } isOwner={ props.isOwner } setEditMode={ setEditMode } />
+                : <ProfileDataForm profile={ props.profile } setEditMode={ setEditMode }  onSubmit={props.onSubmit} />
             }
         </div>
     );

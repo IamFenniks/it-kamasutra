@@ -20,7 +20,7 @@ const Users = (props) => {
 
             <div className={style.users_list}>
 {                                    /* -------- COMPONENT CHILDREN --------- */
-                props.users.map(u => <User user={ u } { ...props } />)
+                props.users.map((u, index) => <User key={index} user={ u } { ...props } />)
             }
             </div>            
         </main>
